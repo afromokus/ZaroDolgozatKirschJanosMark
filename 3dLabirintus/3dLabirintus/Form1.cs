@@ -12,6 +12,9 @@ namespace _3dLabirintus
 {
     public partial class Form1 : Form
     {
+
+        static Panel hatter;
+
         public Form1()
         {
             InitializeComponent();
@@ -20,6 +23,22 @@ namespace _3dLabirintus
         private void Form1_Load(object sender, EventArgs e)
         {
             Text = "3D Labirintus";
+
+            jatekInditas();
+            Controls.Add(hatter);
+
+        }
+
+        private static void jatekInditas()
+        {
+            hatter = new Panel();
+            hatter.BackColor = Color.FromArgb(100, 135, 206, 255);
+            hatter.Dock = DockStyle.Fill;
+
+            /*Pen ceruza = new Pen(Color.Black, 20);
+            Graphics grafika = hatter.CreateGraphics();
+
+            grafika.DrawLine(ceruza, 25, 52, 32, 42);*/
         }
 
         public static double tavolsagSzamitasa(Pont elsoPont, Pont masodikPont)
