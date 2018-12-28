@@ -186,7 +186,7 @@ namespace _3dLabirintus
 
             terkep.Text = palyaRajzolasa();
 
-            fal0.Width = latoter.Width / jatekosLatoMezo;
+            fal0.Width = (int)(latoter.Width / jatekosLatoMezo /tavolsagSzamitasa(jatekosHely,fal0Hely)*1.8);
             fal0.Left = latoter.Width / 2 - fal0.Width / 2 + latoter.Width / jatekosLatoMezo *
                 (fal0Hely.getX() - jatekosHely.getX());
             fal0.Top = latoter.Height - fal0.Height;
