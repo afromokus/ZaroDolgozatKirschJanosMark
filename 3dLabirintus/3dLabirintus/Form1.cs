@@ -116,7 +116,7 @@ namespace _3dLabirintus
             hatter.BackColor = Color.FromArgb(100, 135, 206, 255);
             hatter.Dock = DockStyle.Fill;
 
-            terkep.Width = 100;
+            terkep.Width = 50;
             terkep.Height = 100;
             terkep.Text = palyaRajzolasa();
 
