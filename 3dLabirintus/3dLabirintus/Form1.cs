@@ -19,7 +19,7 @@ namespace _3dLabirintus
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Text = "3D Labirintus";
         }
 
         public static double tavolsagSzamitasa(Pont elsoPont, Pont masodikPont)
