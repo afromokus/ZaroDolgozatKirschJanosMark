@@ -8,31 +8,31 @@ namespace _3dLabirintus
 {
     public class Pont
     {
-        double x = 0;
-        double y = 0;
+        int x = 0;
+        int y = 0;
 
-        public Pont(double x, double y)
+        public Pont(int x, int y)
         {
             this.x = x;
             this.y = y;
         }
 
-        public void setX(double x)
+        public void setX(int x)
         {
             this.x = x;
         }
 
-        public double getX()
+        public int getX()
         {
             return x;
         }
 
-        public void setY(double y)
+        public void setY(int y)
         {
             this.y = y;
         }
 
-        public double getY()
+        public int getY()
         {
             return y;
         }

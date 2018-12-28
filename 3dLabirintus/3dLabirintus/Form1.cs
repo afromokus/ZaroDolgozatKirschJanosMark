@@ -13,13 +13,18 @@ namespace _3dLabirintus
     public partial class Form1 : Form
     {
 
-        static Panel hatter;
+        static Panel latoter;
         static Label terkep;
 
         static int i = 0, j = 0;
 
         static char[,] palya;
         static int palyaSzelesseg = 8, palyaMagassag = 8;
+        private static int jatekosLatoMezo = 5;
+        private static Pont jatekosHely;
+        private static Pont fal0Hely;
+        static Panel fal0;
+        private static bool jatekMegyE = false;
 
         public Form1()
         {
@@ -33,12 +38,16 @@ namespace _3dLabirintus
             palya = new char[palyaMagassag, palyaSzelesseg];
             palyaFeltoltese(palyaMagassag, palyaSzelesseg);
 
-            hatter = new Panel();
+            latoter = new Panel();
+            latoter.Width = Width;
+            latoter.Height = Height;
+
             terkep = new Label();
 
+            Controls.Add(latoter);
+            latoter.Controls.Add(terkep);
+
             jatekInditas();
-            Controls.Add(hatter);
-            hatter.Controls.Add(terkep);
 
             KeyDown += new KeyEventHandler(billentyuLenyomas);
 
@@ -46,8 +55,9 @@ namespace _3dLabirintus
 
         private void billentyuLenyomas(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.M)
+            switch(e.KeyCode)
             {
+                case Keys.M:
                 if (terkep.Visible)
                 {
                     terkep.Visible = false;
@@ -56,7 +66,37 @@ namespace _3dLabirintus
                 {
                     terkep.Visible = true;
                 }
+                    break;
+
+                case Keys.D:
+                    if (jatekMegyE && jatekosHely.getX() < 7)
+                    {
+                        jatekosJobbra();
+                    }
+                    break;
+
+                case Keys.A:
+                    if (jatekMegyE && jatekosHely.getX() > 0)
+                    {
+                        jatekosBalra();
+                    }
+                    break;
+
             }
+        }
+
+        private static void jatekosBalra()
+        {
+            setMezoPalya(jatekosHely, '_');
+            jatekosHely.setX(jatekosHely.getX() - 1);
+            abrazolas();
+        }
+
+        private static void jatekosJobbra()
+        {
+            setMezoPalya(jatekosHely, '_');
+            jatekosHely.setX(jatekosHely.getX() + 1);
+            abrazolas();
         }
 
         private void palyaFeltoltese(int palyaMagassag, int palyaSzelesseg)
@@ -99,13 +139,19 @@ namespace _3dLabirintus
 
         }
 
+        private static void setMezoPalya(Pont hely, char objektum)
+        {
+            palya[hely.getY(), hely.getX()] = objektum;
+            //terkep.Text = palyaRajzolasa(palyaMagassag, palyaSzelesseg);
+        }
+
         private void palyaUresFeltoltese(int palyaMagassag, int palyaSzelesseg)
         {
             for (i = 0; i < palyaMagassag; i++)
             {
                 for (j = 0; j < palyaSzelesseg; j++)
                 {
-                    palya[i, j] = '-';
+                    palya[i, j] = '_';
                 }
             }
 
@@ -113,14 +159,37 @@ namespace _3dLabirintus
 
         private static void jatekInditas()
         {
-            hatter.BackColor = Color.FromArgb(100, 135, 206, 255);
-            hatter.Dock = DockStyle.Fill;
+            jatekMegyE = true;
 
-            terkep.Width = 50;
-            terkep.Height = 100;
+            latoter.BackColor = Color.FromArgb(100, 135, 206, 255);
+            latoter.Dock = DockStyle.Fill;
+
+            terkep.Width = 80;
+            terkep.Height = 120;
+
+
+            jatekosHely = new Pont(3, 3);
+            fal0Hely = new Pont(2, 1);
+            fal0 = new Panel();
+            latoter.Controls.Add(fal0);
+            fal0.BackColor = Color.Gray;
+            abrazolas();
+
+
+            // hatter.Paint += new PaintEventHandler(vonalRajzolasa);
+        }
+
+        private static void abrazolas()
+        {
+            setMezoPalya(jatekosHely, 'P');
+            setMezoPalya(fal0Hely, '#');
+
             terkep.Text = palyaRajzolasa();
 
-           // hatter.Paint += new PaintEventHandler(vonalRajzolasa);
+            fal0.Width = latoter.Width / jatekosLatoMezo;
+            fal0.Left = latoter.Width / 2 - fal0.Width / 2 + latoter.Width / jatekosLatoMezo *
+                (fal0Hely.getX() - jatekosHely.getX());
+            fal0.Top = latoter.Height - fal0.Height;
         }
 
         /*private static void vonalRajzolasa(object sender, PaintEventArgs e)
