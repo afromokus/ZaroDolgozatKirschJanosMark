@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace _3dLabirintus
 {
-    class Fal : Panel
+    class Fal : PictureBox
     {
 
         public Fal(int szemBal, int szemtav, int latoter, int latoSzel)
@@ -17,11 +17,22 @@ namespace _3dLabirintus
             Top = 150;
 
             Left = latoter / latoSzel * szemBal;
+            /*MessageBox.Show("Képernyőszélesség: " + latoter + "px\nEgyszerre látható mezők száma: " + latoSzel +
+                " db\nVízszintes eltolás játékoshoz képest: " + szemBal + " egység\nTávolság játékostól: " +
+                szemtav);*/
 
             Height = Convert.ToInt32(300 / Math.Pow(1.5, szemtav));
             Width = Height;
 
-            MessageBox.Show("Baloldal: " + Left + "\nTető: " + Top + "\nMagasság és szélesség: " + Height);
+            //MessageBox.Show("Baloldal: " + Left + "\nTető: " + Top + "\nMagasság és szélesség: " + Height);
+
+        }
+
+        public Fal(bool oldalE)
+        {
+            BackColor = Color.Gray;
+
+            Width = 80;
 
         }
 

@@ -144,6 +144,10 @@ namespace _3dLabirintus
         {
             palya[hely.getY(), hely.getX()] = objektum;
         }
+        private static void setMezoPalya(int x, int y, char objektum)
+        {
+            palya[y, x] = objektum;
+        }
 
         private void palyaUresFeltoltese(int palyaMagassag, int palyaSzelesseg)
         {
@@ -167,22 +171,49 @@ namespace _3dLabirintus
             terkep.Width = 80;
             terkep.Height = 120;
 
+            falakKozeZaras();
+
 
             jatekosHely = new Pont(3, 3);
             fal0Hely = new Pont(3, 3);
             fal1Hely = new Pont(2, 2);
-            fal2Hely = new Pont(3, 3);
+            fal2Hely = new Pont(1, 1);
             setMezoPalya(fal0Hely, '#');
-            //setMezoPalya(fal1Hely, '#');
-            //setMezoPalya(fal2Hely, '#');
+            setMezoPalya(fal1Hely, '#');
+            setMezoPalya(fal2Hely, '#');
 
-            jatekosHely.setY(4);
+            jatekosHely.setX(2);
+            jatekosHely.setY(5);
 
             terkepVizsgalataEsRajzolas();
 
-            MessageBox.Show("Falak száma: " + falak.Count);
+            //MessageBox.Show("Falak száma: " + falak.Count);
 
             // hatter.Paint += new PaintEventHandler(vonalRajzolasa);
+        }
+
+        private static void falakKozeZaras()
+        {
+            for (i = 0; i < palyaSzelesseg; i++)
+            {
+                setMezoPalya(0, i, '#');
+            }
+
+            for (i = 0; i < palyaSzelesseg; i++)
+            {
+                setMezoPalya(palyaMagassag - 1, i, '#');
+            }
+
+            for (i = 1; i < palyaMagassag; i++)
+            {
+                setMezoPalya(i, 0, '#');
+            }
+
+            for (i = 1; i < palyaMagassag; i++)
+            {
+                setMezoPalya(i, palyaMagassag - 1, '#');
+            }
+
         }
 
         private static void terkepVizsgalataEsRajzolas()
@@ -192,6 +223,26 @@ namespace _3dLabirintus
 
             i = jatekosHely.getX() - latoSzel / 2;
             szemBal = 0;
+            j = jatekosHely.getY() - 1;
+            szemtav = 1;
+
+            try
+            {
+                if (palya[jatekosHely.getY(), jatekosHely.getX() - 1] == '#')
+                {
+                    rajzolFalBalOld();
+                }
+
+                if (palya[jatekosHely.getY(), jatekosHely.getX() + 1] == '#')
+                {
+                    rajzolFalJobbOld();
+                }
+
+            }
+            catch
+            {
+            }
+
             do
             {
                 if (i > 0)
@@ -199,33 +250,36 @@ namespace _3dLabirintus
                     j = jatekosHely.getY() - 1;
                     if (j > 0)
                     {
-                        szemtav = 0;
+                        szemtav = 1;
                         do
                         {
                             if (palya[j, i] == '#')
                             {
                                 kirajzolFal(szemBal, szemtav);
-                               // MessageBox.Show("Térkép(" + i + "," + j + ") = " + palya[j, i] + "\tBizony fal!");
+                                //MessageBox.Show("Térkép(" + i + "," + j + ") = " + palya[j, i] + "\tBizony fal!");
                                 i++;
+                                szemBal++;
+                                szemtav = 1;
                                 j = jatekosHely.getY() - 1;
                             }
                             else
                             {
-                              //  MessageBox.Show("Térkép(" + i + "," + j + ") = " + palya[j, i] + "\tNem fal.");
+                                //MessageBox.Show("Térkép(" + i + "," + j + ") = " + palya[j, i] + "\tNem fal.");
                                 szemtav++;
                                 j--;
                             }
 
                         }
-                        while (szemtav <= latotav && j >= 0);
+                        while (szemtav <= latotav && j >= 0 && i < palyaSzelesseg);
 
-                        szemBal++;
                         i++;
+                        szemBal++;
 
                     }
                     else
                     {
                         osszesNagyFal();
+                        break;
                     }
                 }
                 else
@@ -238,17 +292,36 @@ namespace _3dLabirintus
             
         }
 
+        private static void rajzolFalJobbOld()
+        {
+            Fal oldalFal = new Fal(true);
+
+            oldalFal.Height = latoter.Height;
+
+            oldalFal.Left = latoter.Width - oldalFal.Width;
+
+            latoter.Controls.Add(oldalFal);
+        }
+
+        private static void rajzolFalBalOld()
+        {
+            Fal oldalFal = new Fal(true);
+
+            oldalFal.Height = latoter.Height;
+
+            latoter.Controls.Add(oldalFal);
+        }
+
         private static void kirajzolFal(int szemBal, int szemtav)
         {
-            //MessageBox.Show("bal: " + szemBal + "\ttavolsag: " + szemtav);
-
             falak.Add(new Fal(szemBal, szemtav, latoter.Width, latoSzel));
             latoter.Controls.Add(falak[falak.Count - 1]);
         }
 
         private static void osszesNagyFal()
         {
-            throw new NotImplementedException();
+            falak = new List<Fal>();
+            latoter.BackColor = Color.Gray;
         }
 
         /*private static void vonalRajzolasa(object sender, PaintEventArgs e)
