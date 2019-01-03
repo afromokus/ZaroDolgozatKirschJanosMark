@@ -45,7 +45,6 @@ namespace _3dLabirintus
             terkep = new Label();
 
             Controls.Add(latoter);
-            latoter.Controls.Add(terkep);
 
             jatekInditas();
 
@@ -84,6 +83,12 @@ namespace _3dLabirintus
 
                 case Keys.T:
                     latoter.Controls.Clear();
+                    latoter.Controls.Add(terkep);
+                    break;
+
+                case Keys.Escape:
+                    MessageBox.Show("Kilépés menü");
+                    Environment.Exit(0);
                     break;
 
             }
@@ -225,6 +230,7 @@ namespace _3dLabirintus
         private static void terkepVizsgalataEsRajzolas()
         {
             latoter.Controls.Clear();
+            latoter.Controls.Add(terkep);
             setMezoPalya(jatekosHely, 'P');
             terkep.Text = palyaRajzolasa();
 
