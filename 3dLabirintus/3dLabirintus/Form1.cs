@@ -81,6 +81,20 @@ namespace _3dLabirintus
                     }
                     break;
 
+                case Keys.W:
+                    if (jatekMegyE && jatekosHely.getY() > 0 && palya[jatekosHely.getY() - 1, jatekosHely.getX()] != '#')
+                    {
+                        jatekosElore();
+                    }
+                    break;
+
+                case Keys.S:
+                    if (jatekMegyE && jatekosHely.getY() < palyaMagassag && palya[jatekosHely.getY() + 1, jatekosHely.getX()] != '#')
+                    {
+                        jatekosHatra();
+                    }
+                    break;
+
                 case Keys.T:
                     latoter.Controls.Clear();
                     latoter.Controls.Add(terkep);
@@ -94,20 +108,38 @@ namespace _3dLabirintus
             }
         }
 
+        private void jatekosHatra()
+        {
+            latvanyEsJatekosPozicioNullazasa();
+            jatekosHely.setY(jatekosHely.getY() + 1);
+            terkepVizsgalataEsRajzolas();
+        }
+
+        private void jatekosElore()
+        {
+            latvanyEsJatekosPozicioNullazasa();
+            jatekosHely.setY(jatekosHely.getY() - 1);
+            terkepVizsgalataEsRajzolas();
+        }
+
         private static void jatekosBalra()
         {
-            falak = new List<Fal>();
-            setMezoPalya(jatekosHely, '_');
+            latvanyEsJatekosPozicioNullazasa();
             jatekosHely.setX(jatekosHely.getX() - 1);
             terkepVizsgalataEsRajzolas();
         }
 
         private static void jatekosJobbra()
         {
-            falak = new List<Fal>();
-            setMezoPalya(jatekosHely, '_');
+            latvanyEsJatekosPozicioNullazasa();
             jatekosHely.setX(jatekosHely.getX() + 1);
             terkepVizsgalataEsRajzolas();
+        }
+
+        private static void latvanyEsJatekosPozicioNullazasa()
+        {
+            falak = new List<Fal>();
+            setMezoPalya(jatekosHely, '_');
         }
 
         private void palyaFeltoltese(int palyaMagassag, int palyaSzelesseg)
@@ -186,14 +218,14 @@ namespace _3dLabirintus
 
             jatekosHely = new Pont(3, 3);
             fal0Hely = new Pont(3, 3);
-            fal1Hely = new Pont(2, 2);
+            fal1Hely = new Pont(5, 1);
             fal2Hely = new Pont(1, 1);
             setMezoPalya(fal0Hely, '#');
             setMezoPalya(fal1Hely, '#');
-            setMezoPalya(fal2Hely, '#');
+            //setMezoPalya(fal2Hely, '#');
 
             jatekosHely.setX(2);
-            jatekosHely.setY(5);
+            jatekosHely.setY(6);
 
 
             terkepVizsgalataEsRajzolas();
