@@ -69,17 +69,21 @@ namespace _3dLabirintus
                     break;
 
                 case Keys.D:
-                    if (jatekMegyE && jatekosHely.getX() < 7)
+                    if (jatekMegyE && jatekosHely.getX() < 7 && palya[jatekosHely.getY(), jatekosHely.getX() + 1] != '#')
                     {
                         jatekosJobbra();
                     }
                     break;
 
                 case Keys.A:
-                    if (jatekMegyE && jatekosHely.getX() > 0)
+                    if (jatekMegyE && jatekosHely.getX() > 0 && palya[jatekosHely.getY(), jatekosHely.getX() - 1] != '#')
                     {
                         jatekosBalra();
                     }
+                    break;
+
+                case Keys.T:
+                    latoter.Controls.Clear();
                     break;
 
             }
@@ -95,6 +99,7 @@ namespace _3dLabirintus
 
         private static void jatekosJobbra()
         {
+            falak = new List<Fal>();
             setMezoPalya(jatekosHely, '_');
             jatekosHely.setX(jatekosHely.getX() + 1);
             terkepVizsgalataEsRajzolas();
@@ -185,6 +190,7 @@ namespace _3dLabirintus
             jatekosHely.setX(2);
             jatekosHely.setY(5);
 
+
             terkepVizsgalataEsRajzolas();
 
             //MessageBox.Show("Falak száma: " + falak.Count);
@@ -218,6 +224,7 @@ namespace _3dLabirintus
 
         private static void terkepVizsgalataEsRajzolas()
         {
+            latoter.Controls.Clear();
             setMezoPalya(jatekosHely, 'P');
             terkep.Text = palyaRajzolasa();
 
