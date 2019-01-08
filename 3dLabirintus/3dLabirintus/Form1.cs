@@ -24,7 +24,8 @@ namespace _3dLabirintus
         private static int szemtav;
         private static int latotav = 8;
         static List<Fal> falak = new List<Fal>();
-        
+
+        public static Color alapszinLatoter = Color.FromArgb(100, 135, 206, 255);
 
         public Form1()
         {
@@ -207,7 +208,7 @@ namespace _3dLabirintus
         {
             jatekMegyE = true;
 
-            latoter.BackColor = Color.FromArgb(100, 135, 206, 255);
+            latoter.BackColor = alapszinLatoter;
             latoter.Dock = DockStyle.Fill;
 
             terkep.Width = 80;
@@ -270,6 +271,11 @@ namespace _3dLabirintus
             szemBal = 0;
             j = jatekosHely.getY() - 1;
             szemtav = 1;
+
+            if (jatekosHely.getY() - 1 != '#')
+            {
+                latoter.BackColor = alapszinLatoter;
+            }
 
             try
             {
