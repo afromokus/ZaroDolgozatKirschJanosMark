@@ -272,7 +272,7 @@ namespace _3dLabirintus
             j = jatekosHely.getY() - 1;
             szemtav = 1;
 
-            if (jatekosHely.getY() - 1 != '#')
+            if (palya[jatekosHely.getY() - 1, jatekosHely.getX()] != '#')
             {
                 latoter.BackColor = alapszinLatoter;
             }
