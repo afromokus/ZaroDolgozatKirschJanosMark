@@ -7,7 +7,7 @@ namespace _3dLabirintus
 {
     public partial class Form1 : Form
     {
-
+        #region deklarálás, inícializálás
         static Panel latoter;
         static Label terkep;
         
@@ -32,12 +32,16 @@ namespace _3dLabirintus
             InitializeComponent();
         }
 
+        #endregion
+
+        #region betöltés
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Text = "3D Labirintus";
 
             palya = new char[palyaMagassag, palyaSzelesseg];
-            palyaFeltoltese(palyaMagassag, palyaSzelesseg);
+            palyaUresFeltoltese(palyaMagassag, palyaSzelesseg);
 
             latoter = new Panel();
             latoter.Width = Width;
@@ -47,12 +51,121 @@ namespace _3dLabirintus
 
             Controls.Add(latoter);
 
-            jatekInditas();
+            jatekInditas(palyaSzelesseg/2, palyaMagassag/2);
 
             KeyDown += new KeyEventHandler(billentyuLenyomas);
 
         }
 
+        #endregion
+
+        #region térképfrissítés metódusa
+
+        private static string terkepAtRajzolasa()
+        {
+            string szoveg = "";
+
+            for (i = 0; i < palyaMagassag; i++)
+            {
+                for (j = 0; j < palyaSzelesseg; j++)
+                {
+                    szoveg += palya[i, j];
+                }
+                szoveg += '\n';
+            }
+
+            return szoveg;
+
+        }
+
+        #endregion
+
+        #region pályamanipuláció
+
+        private static void osszesSzelsoMezoFallaAlakitasa()
+        {
+            for (i = 0; i < palyaSzelesseg; i++)
+            {
+                setMezoPalya(0, i, '#');
+            }
+
+            for (i = 0; i < palyaSzelesseg; i++)
+            {
+                setMezoPalya(palyaMagassag - 1, i, '#');
+            }
+
+            for (i = 1; i < palyaMagassag; i++)
+            {
+                setMezoPalya(i, 0, '#');
+            }
+
+            for (i = 1; i < palyaMagassag; i++)
+            {
+                setMezoPalya(i, palyaMagassag - 1, '#');
+            }
+
+        }
+
+        private void palyaUresFeltoltese(int palyaMagassag, int palyaSzelesseg)
+        {
+            for (i = 0; i < palyaMagassag; i++)
+            {
+                for (j = 0; j < palyaSzelesseg; j++)
+                {
+                    palya[i, j] = '_';
+                }
+            }
+
+        }
+
+        private static void setMezoPalya(Pont hely, char objektum)
+        {
+            palya[hely.getY(), hely.getX()] = objektum;
+        }
+        private static void setMezoPalya(int x, int y, char objektum)
+        {
+            palya[y, x] = objektum;
+        }
+
+        #endregion
+
+        #region falRajzolas
+
+        private static void rajzolFalJobbOld()
+        {
+            Fal oldalFal = new Fal(true);
+
+            oldalFal.Height = latoter.Height;
+
+            oldalFal.Left = latoter.Width - oldalFal.Width;
+
+            latoter.Controls.Add(oldalFal);
+        }
+
+        private static void rajzolFalBalOld()
+        {
+            Fal oldalFal = new Fal(true);
+
+            oldalFal.Height = latoter.Height;
+
+            latoter.Controls.Add(oldalFal);
+        }
+
+        private static void kirajzolFal(int szemBal, int szemtav)
+        {
+            falak.Add(new Fal(szemBal, szemtav, latoter.Width, latoSzel));
+            latoter.Controls.Add(falak[falak.Count - 1]);
+        }
+
+        private static void osszesNagyFal()
+        {
+            falak = new List<Fal>();
+            latoter.BackColor = Color.Gray;
+        }
+
+        #endregion
+
+        #region irányítás
         private void billentyuLenyomas(object sender, KeyEventArgs e)
         {
             switch(e.KeyCode)
@@ -108,156 +221,42 @@ namespace _3dLabirintus
 
             }
         }
+        #endregion
+
+        #region játékos mozgása
 
         private void jatekosHatra()
         {
-            latvanyEsJatekosPozicioNullazasa();
+            latvanyEsJatekosElozoPozicioNullazasa();
             jatekosHely.setY(jatekosHely.getY() + 1);
             terkepVizsgalataEsRajzolas();
         }
 
         private void jatekosElore()
         {
-            latvanyEsJatekosPozicioNullazasa();
+            latvanyEsJatekosElozoPozicioNullazasa();
             jatekosHely.setY(jatekosHely.getY() - 1);
             terkepVizsgalataEsRajzolas();
         }
 
         private static void jatekosBalra()
         {
-            latvanyEsJatekosPozicioNullazasa();
+            latvanyEsJatekosElozoPozicioNullazasa();
             jatekosHely.setX(jatekosHely.getX() - 1);
             terkepVizsgalataEsRajzolas();
         }
 
         private static void jatekosJobbra()
         {
-            latvanyEsJatekosPozicioNullazasa();
+            latvanyEsJatekosElozoPozicioNullazasa();
             jatekosHely.setX(jatekosHely.getX() + 1);
             terkepVizsgalataEsRajzolas();
         }
 
-        private static void latvanyEsJatekosPozicioNullazasa()
+        private static void latvanyEsJatekosElozoPozicioNullazasa()
         {
             falak = new List<Fal>();
             setMezoPalya(jatekosHely, '_');
-        }
-
-        private void palyaFeltoltese(int palyaMagassag, int palyaSzelesseg)
-        {
-            palyaUresFeltoltese(palyaMagassag, palyaSzelesseg);
-            palyaRajzolasa(palyaMagassag, palyaSzelesseg);
-        }
-
-        private static string palyaRajzolasa(int palyaMagassag, int palyaSzelesseg)
-        {
-            string szoveg = "";
-
-            for (i = 0; i < palyaMagassag; i++)
-            {
-                for (j = 0; j < palyaSzelesseg; j++)
-                {
-                    szoveg += palya[i, j];
-                }
-                szoveg += '\n';
-            }
-
-            return szoveg;
-
-        }
-
-        private static string palyaRajzolasa()
-        {
-            string szoveg = "";
-
-            for (i = 0; i < palyaMagassag; i++)
-            {
-                for (j = 0; j < palyaSzelesseg; j++)
-                {
-                    szoveg += palya[i, j];
-                }
-                szoveg += '\n';
-            }
-
-            return szoveg;
-
-        }
-
-        private static void setMezoPalya(Pont hely, char objektum)
-        {
-            palya[hely.getY(), hely.getX()] = objektum;
-        }
-        private static void setMezoPalya(int x, int y, char objektum)
-        {
-            palya[y, x] = objektum;
-        }
-
-        private void palyaUresFeltoltese(int palyaMagassag, int palyaSzelesseg)
-        {
-            for (i = 0; i < palyaMagassag; i++)
-            {
-                for (j = 0; j < palyaSzelesseg; j++)
-                {
-                    palya[i, j] = '_';
-                }
-            }
-
-        }
-
-        private static void jatekInditas()
-        {
-            jatekMegyE = true;
-
-            latoter.BackColor = alapszinLatoter;
-            latoter.Dock = DockStyle.Fill;
-
-            terkep.Width = 80;
-            terkep.Height = 120;
-
-            falakKozeZaras();
-
-
-            jatekosHely = new Pont(3, 3);
-            fal0Hely = new Pont(3, 3);
-            fal1Hely = new Pont(5, 1);
-            fal2Hely = new Pont(1, 1);
-            setMezoPalya(fal0Hely, '#');
-            setMezoPalya(fal1Hely, '#');
-            //setMezoPalya(fal2Hely, '#');
-
-            jatekosHely.setX(2);
-            jatekosHely.setY(6);
-
-
-            terkepVizsgalataEsRajzolas();
-
-            //MessageBox.Show("Falak száma: " + falak.Count);
-
-            // hatter.Paint += new PaintEventHandler(vonalRajzolasa);
-        }
-
-        private static void falakKozeZaras()
-        {
-            for (i = 0; i < palyaSzelesseg; i++)
-            {
-                setMezoPalya(0, i, '#');
-            }
-
-            for (i = 0; i < palyaSzelesseg; i++)
-            {
-                setMezoPalya(palyaMagassag - 1, i, '#');
-            }
-
-            for (i = 1; i < palyaMagassag; i++)
-            {
-                setMezoPalya(i, 0, '#');
-            }
-
-            for (i = 1; i < palyaMagassag; i++)
-            {
-                setMezoPalya(i, palyaMagassag - 1, '#');
-            }
-
         }
 
         private static void terkepVizsgalataEsRajzolas()
@@ -265,7 +264,7 @@ namespace _3dLabirintus
             latoter.Controls.Clear();
             latoter.Controls.Add(terkep);
             setMezoPalya(jatekosHely, 'P');
-            terkep.Text = palyaRajzolasa();
+            terkep.Text = terkepAtRajzolasa();
 
             i = jatekosHely.getX() - latoSzel / 2;
             szemBal = 0;
@@ -340,55 +339,57 @@ namespace _3dLabirintus
 
             }
             while (szemBal <= latoSzel && i < palyaSzelesseg - 1);
-            
+
         }
 
-        private static void rajzolFalJobbOld()
+        #endregion
+
+        private static void jatekInditas(int jatekosKezdoHelyX, int jatekosKezdoHelyY)
         {
-            Fal oldalFal = new Fal(true);
 
-            oldalFal.Height = latoter.Height;
+            jatekMegyE = true;
 
-            oldalFal.Left = latoter.Width - oldalFal.Width;
+            latoter.BackColor = alapszinLatoter;
+            latoter.Dock = DockStyle.Fill;
 
-            latoter.Controls.Add(oldalFal);
+            terkep.Width = 80;
+            terkep.Height = 120;
+
+            osszesSzelsoMezoFallaAlakitasa();
+
+
+            jatekosHely = new Pont(3, 3);
+            fal0Hely = new Pont(3, 3);
+            fal1Hely = new Pont(5, 1);
+            fal2Hely = new Pont(1, 1);
+            setMezoPalya(fal0Hely, '#');
+            setMezoPalya(fal1Hely, '#');
+
+            jatekosHely.setX(jatekosKezdoHelyX);
+            jatekosHely.setY(jatekosKezdoHelyY);
+
+            if (palya[jatekosKezdoHelyY, jatekosKezdoHelyX] == '#')
+            {
+                throw new Exception("Játékos nem kezdhet falban!");
+            }
+
+
+            terkepVizsgalataEsRajzolas();
         }
 
-        private static void rajzolFalBalOld()
-        {
-            Fal oldalFal = new Fal(true);
 
-            oldalFal.Height = latoter.Height;
 
-            latoter.Controls.Add(oldalFal);
-        }
 
-        private static void kirajzolFal(int szemBal, int szemtav)
-        {
-            falak.Add(new Fal(szemBal, szemtav, latoter.Width, latoSzel));
-            latoter.Controls.Add(falak[falak.Count - 1]);
-        }
 
-        private static void osszesNagyFal()
-        {
-            falak = new List<Fal>();
-            latoter.BackColor = Color.Gray;
-        }
 
-        /*private static void vonalRajzolasa(object sender, PaintEventArgs e)
-        {
-            Pen blackpen = new Pen(Color.Black, 1);
-
-            Graphics g = e.Graphics;
-
-            g.DrawLine(blackpen, 0, 0, 200, 300);
-        }*/
-
+        #region fel nem használt kód
         public static double tavolsagSzamitasa(Pont elsoPont, Pont masodikPont)
         {
-            return Math.Sqrt(Math.Pow((elsoPont.getX() - masodikPont.getX()), 2) 
+            return Math.Sqrt(Math.Pow((elsoPont.getX() - masodikPont.getX()), 2)
                 + Math.Pow((elsoPont.getY() - masodikPont.getY()), 2));
         }
+
+        #endregion
 
     }
 }
