@@ -17,9 +17,11 @@ namespace _3dLabirintus
             Top = 150;
 
             Left = latoter / latoSzel * szemBal;
+            #region magyarázat
             /*MessageBox.Show("Képernyőszélesség: " + latoter + "px\nEgyszerre látható mezők száma: " + latoSzel +
                 " db\nVízszintes eltolás játékoshoz képest: " + szemBal + " egység\nTávolság játékostól: " +
                 szemtav);*/
+            #endregion
 
             Height = Convert.ToInt32(300 / Math.Pow(1.5, szemtav));
             Width = Height;

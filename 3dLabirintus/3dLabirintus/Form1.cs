@@ -7,7 +7,7 @@ namespace _3dLabirintus
 {
     public partial class Form1 : Form
     {
-        #region deklarálás, inícializálás
+        #region deklarálás, alapértékek, inícializálás
         static Panel latoter;
         static Label terkep;
         
@@ -22,7 +22,8 @@ namespace _3dLabirintus
         private static bool jatekMegyE = false;
         private static int latoSzel = 5;
         private static int szemtav;
-        private static int latotav = 8;
+        //Milyen mesziről kezdneke el az objektumok láthatóvá válni
+        private static int latotav = 10;
         static List<Fal> falak = new List<Fal>();
 
         public static Color alapszinLatoter = Color.FromArgb(100, 135, 206, 255);
@@ -84,25 +85,51 @@ namespace _3dLabirintus
 
         private static void osszesSzelsoMezoFallaAlakitasa()
         {
-            for (i = 0; i < palyaSzelesseg; i++)
+            /*
+             #____________
+             #____________
+             #____________
+             #____________
+             #____________
+             */
+            for (i = 0; i < palyaMagassag; i++)
             {
                 setMezoPalya(0, i, '#');
             }
+            /*
+             ____________#
+             ____________#
+             ____________#
+             ____________#
+             ____________#
+             ____________#
+             ____________#
+             */
 
-            for (i = 0; i < palyaSzelesseg; i++)
+            for (i = 0; i < palyaMagassag; i++)
             {
-                setMezoPalya(palyaMagassag - 1, i, '#');
+                setMezoPalya(palyaSzelesseg - 1, i, '#');
             }
 
-            for (i = 1; i < palyaMagassag; i++)
+            //_########################_
+            for (i = 1; i < palyaSzelesseg - 1; i++)
             {
                 setMezoPalya(i, 0, '#');
             }
 
-            for (i = 1; i < palyaMagassag; i++)
+            /*
+             * __________________________
+             * __________________________
+             * __________________________
+             * __________________________
+             * __________________________
+             * _########################_
+             * _*/
+            for (i = 1; i < palyaSzelesseg - 1; i++)
             {
                 setMezoPalya(i, palyaMagassag - 1, '#');
             }
+
 
         }
 
@@ -182,7 +209,7 @@ namespace _3dLabirintus
                     break;
 
                 case Keys.D:
-                    if (jatekMegyE && jatekosHely.getX() < 7 && palya[jatekosHely.getY(), jatekosHely.getX() + 1] != '#')
+                    if (jatekMegyE && jatekosHely.getX() < palyaSzelesseg - 1 && palya[jatekosHely.getY(), jatekosHely.getX() + 1] != '#')
                     {
                         jatekosJobbra();
                     }
@@ -203,7 +230,7 @@ namespace _3dLabirintus
                     break;
 
                 case Keys.S:
-                    if (jatekMegyE && jatekosHely.getY() < palyaMagassag && palya[jatekosHely.getY() + 1, jatekosHely.getX()] != '#')
+                    if (jatekMegyE && jatekosHely.getY() < palyaMagassag - 1 && palya[jatekosHely.getY() + 1, jatekosHely.getX()] != '#')
                     {
                         jatekosHatra();
                     }
@@ -352,8 +379,8 @@ namespace _3dLabirintus
             latoter.BackColor = alapszinLatoter;
             latoter.Dock = DockStyle.Fill;
 
-            terkep.Width = 80;
-            terkep.Height = 120;
+            terkep.Width = palyaSzelesseg * 10;
+            terkep.Height = palyaMagassag*13;
 
             osszesSzelsoMezoFallaAlakitasa();
 
