@@ -27,8 +27,11 @@ namespace _3dLabirintus
         {
             Text = "3D Labirintus";
 
-
             kilepesEsemenyKezelo = new KeyEventHandler(kilepes);
+
+            buttonJatekStart.BackColor = BackColor;
+            buttonJatekStart.FlatStyle = FlatStyle.Flat;
+            buttonJatekStart.FlatAppearance.BorderSize = 0;
 
             foGombokraKilepesEsemny();
             
