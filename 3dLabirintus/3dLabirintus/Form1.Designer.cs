@@ -36,7 +36,7 @@
             // 
             // buttonJatekStart
             // 
-            this.buttonJatekStart.Location = new System.Drawing.Point(275, 83);
+            this.buttonJatekStart.Location = new System.Drawing.Point(267, 83);
             this.buttonJatekStart.Name = "buttonJatekStart";
             this.buttonJatekStart.Size = new System.Drawing.Size(240, 23);
             this.buttonJatekStart.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             // buttonOnlineMod
             // 
-            this.buttonOnlineMod.Location = new System.Drawing.Point(275, 138);
+            this.buttonOnlineMod.Location = new System.Drawing.Point(267, 138);
             this.buttonOnlineMod.Name = "buttonOnlineMod";
             this.buttonOnlineMod.Size = new System.Drawing.Size(240, 23);
             this.buttonOnlineMod.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             // buttonBeallitasok
             // 
-            this.buttonBeallitasok.Location = new System.Drawing.Point(275, 193);
+            this.buttonBeallitasok.Location = new System.Drawing.Point(267, 193);
             this.buttonBeallitasok.Name = "buttonBeallitasok";
             this.buttonBeallitasok.Size = new System.Drawing.Size(240, 23);
             this.buttonBeallitasok.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             // buttonKilepes
             // 
-            this.buttonKilepes.Location = new System.Drawing.Point(275, 247);
+            this.buttonKilepes.Location = new System.Drawing.Point(267, 247);
             this.buttonKilepes.Name = "buttonKilepes";
             this.buttonKilepes.Size = new System.Drawing.Size(240, 23);
             this.buttonKilepes.TabIndex = 3;

@@ -41,6 +41,7 @@
             this.buttonUjJatek.TabIndex = 0;
             this.buttonUjJatek.Text = "Új játék";
             this.buttonUjJatek.UseVisualStyleBackColor = true;
+            this.buttonUjJatek.Click += new System.EventHandler(this.buttonUjJatek_Click);
             // 
             // buttonBetoltes
             // 
