@@ -32,18 +32,25 @@ namespace _3dLabirintus
 
             kilepesEsemenyKezelo = new KeyEventHandler(kilepes);
 
+            gombokAlapKonfiguracioja();
+            gombokhozEsemenyekRendeleseFormhozAdas();
+
+            foGombokraKilepesEsemny();
+        }
+
+        private void gombokhozEsemenyekRendeleseFormhozAdas()
+        {
+            gombJatekStart.Click += new EventHandler(gombJatekStart_Click);
+
+            Controls.Add(gombJatekStart);
+        }
+
+        private void gombokAlapKonfiguracioja()
+        {
             gombJatekStart = new Gomb();
             gombJatekStart.Width = 240;
             gombJatekStart.Location = new Point(267, 83);
             gombJatekStart.Text = "Játék indítása";
-
-            gombJatekStart.Click += new EventHandler(gombJatekStart_Click);
-
-            Controls.Add(gombJatekStart);
-
-            foGombokraKilepesEsemny();
-            
-
         }
 
         private void foGombokraKilepesEsemny()
