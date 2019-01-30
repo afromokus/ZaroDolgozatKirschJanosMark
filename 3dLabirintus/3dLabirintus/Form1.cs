@@ -52,9 +52,10 @@ namespace _3dLabirintus
 
             Controls.Add(latoter);
 
-            jatekInditas(palyaSzelesseg/2, palyaMagassag/2);
 
             KeyDown += new KeyEventHandler(billentyuLenyomas);
+
+            buttonJatekStart.Select();
 
         }
 
@@ -242,7 +243,7 @@ namespace _3dLabirintus
                     break;
 
                 case Keys.Escape:
-                    MessageBox.Show("Kilépés menü");
+                    MessageBox.Show("Kilépés ablak");
                     Environment.Exit(0);
                     break;
 
@@ -370,6 +371,33 @@ namespace _3dLabirintus
         }
 
         #endregion
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonKilepes_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void buttonJatekStart_Click(object sender, EventArgs e)
+        {
+            foGombokElrejtese();
+
+            Focus();
+
+            jatekInditas(palyaSzelesseg/2, palyaMagassag/2);
+        }
+
+        private void foGombokElrejtese()
+        {
+            buttonJatekStart.Hide();
+            buttonOnlineMod.Hide();
+            buttonBeallitasok.Hide();
+            buttonKilepes.Hide();
+        }
 
         private static void jatekInditas(int jatekosKezdoHelyX, int jatekosKezdoHelyY)
         {
