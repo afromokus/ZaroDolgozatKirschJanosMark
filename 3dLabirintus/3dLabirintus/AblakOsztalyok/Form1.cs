@@ -37,6 +37,8 @@ namespace _3dLabirintus
             gombJatekStart.Location = new Point(267, 83);
             gombJatekStart.Text = "Játék indítása";
 
+            gombJatekStart.Click += new EventHandler(gombJatekStart_Click);
+
             Controls.Add(gombJatekStart);
 
             foGombokraKilepesEsemny();
@@ -71,7 +73,7 @@ namespace _3dLabirintus
             Environment.Exit(0);
         }
 
-        private void buttonJatekStart_Click(object sender, EventArgs e)
+        private void gombJatekStart_Click(object sender, EventArgs e)
         {
             Focus();
 

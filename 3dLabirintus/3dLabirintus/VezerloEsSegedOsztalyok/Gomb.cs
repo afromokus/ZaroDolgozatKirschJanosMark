@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace _3dLabirintus.VezerloEsSegedOsztalyok
 {
     class Gomb : Button
     {
 
-        System.Drawing.Color ablakHatterSzine = Application.OpenForms.Cast<Form>().Last<Form>().BackColor;
+        Color ablakHatterSzine = Application.OpenForms.Cast<Form>().Last<Form>().BackColor;
 
         public Gomb()
         {
@@ -18,6 +19,9 @@ namespace _3dLabirintus.VezerloEsSegedOsztalyok
             FlatStyle = FlatStyle.Flat;
             FlatAppearance.BorderSize = 0;
             FlatAppearance.MouseOverBackColor = ablakHatterSzine;
+            Font = new Font("", 18, FontStyle.Bold);
+            ForeColor = Color.FromArgb(0,240,240,0);
+            Height = 50;
 
             }
     }
