@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using _3dLabirintus.VezerloEsSegedOsztalyok;
 
 namespace _3dLabirintus
 {
@@ -12,6 +13,8 @@ namespace _3dLabirintus
         KeyEventHandler kilepesEsemenyKezelo;
 
         JatekValasztasAblak valasztasAblak;
+
+        Gomb gombJatekStart;
         
 
         public Form1()
@@ -29,9 +32,12 @@ namespace _3dLabirintus
 
             kilepesEsemenyKezelo = new KeyEventHandler(kilepes);
 
-            buttonJatekStart.BackColor = BackColor;
-            buttonJatekStart.FlatStyle = FlatStyle.Flat;
-            buttonJatekStart.FlatAppearance.BorderSize = 0;
+            gombJatekStart = new Gomb();
+            gombJatekStart.Width = 240;
+            gombJatekStart.Location = new Point(267, 83);
+            gombJatekStart.Text = "Játék indítása";
+
+            Controls.Add(gombJatekStart);
 
             foGombokraKilepesEsemny();
             
@@ -40,7 +46,7 @@ namespace _3dLabirintus
 
         private void foGombokraKilepesEsemny()
         {
-            buttonJatekStart.KeyDown += kilepesEsemenyKezelo;
+            gombJatekStart.KeyDown += kilepesEsemenyKezelo;
             buttonOnlineMod.KeyDown += kilepesEsemenyKezelo;
             buttonBeallitasok.KeyDown += kilepesEsemenyKezelo;
             buttonKilepes.KeyDown += kilepesEsemenyKezelo;
@@ -76,6 +82,7 @@ namespace _3dLabirintus
             if (valasztasAblak.ShowDialog() == DialogResult.Cancel)
             {
                 Show();
+                gombJatekStart.Focus();
             }
         }
 

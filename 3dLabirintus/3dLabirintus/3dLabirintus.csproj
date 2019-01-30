@@ -46,37 +46,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fal.cs">
+    <Compile Include="VezerloEsSegedOsztalyok\Fal.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="AblakOsztalyok\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="AblakOsztalyok\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="JatekAblak.cs">
+    <Compile Include="AblakOsztalyok\JatekAblak.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JatekAblak.Designer.cs">
+    <Compile Include="AblakOsztalyok\JatekAblak.Designer.cs">
       <DependentUpon>JatekAblak.cs</DependentUpon>
     </Compile>
-    <Compile Include="JatekValasztasAblak.cs">
+    <Compile Include="AblakOsztalyok\JatekValasztasAblak.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="JatekValasztasAblak.Designer.cs">
+    <Compile Include="AblakOsztalyok\JatekValasztasAblak.Designer.cs">
       <DependentUpon>JatekValasztasAblak.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pont.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="VezerloEsSegedOsztalyok\Gomb.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VezerloEsSegedOsztalyok\Pont.cs" />
+    <Compile Include="VezerloEsSegedOsztalyok\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="AblakOsztalyok\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JatekAblak.resx">
+    <EmbeddedResource Include="AblakOsztalyok\JatekAblak.resx">
       <DependentUpon>JatekAblak.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="JatekValasztasAblak.resx">
+    <EmbeddedResource Include="AblakOsztalyok\JatekValasztasAblak.resx">
       <DependentUpon>JatekValasztasAblak.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

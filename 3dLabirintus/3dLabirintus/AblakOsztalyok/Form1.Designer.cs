@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonJatekStart = new System.Windows.Forms.Button();
             this.buttonOnlineMod = new System.Windows.Forms.Button();
             this.buttonBeallitasok = new System.Windows.Forms.Button();
             this.buttonKilepes = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // buttonJatekStart
-            // 
-            this.buttonJatekStart.Location = new System.Drawing.Point(267, 83);
-            this.buttonJatekStart.Name = "buttonJatekStart";
-            this.buttonJatekStart.Size = new System.Drawing.Size(240, 23);
-            this.buttonJatekStart.TabIndex = 0;
-            this.buttonJatekStart.Text = "Játék indítása";
-            this.buttonJatekStart.UseVisualStyleBackColor = true;
-            this.buttonJatekStart.Click += new System.EventHandler(this.buttonJatekStart_Click);
             // 
             // buttonOnlineMod
             // 
@@ -81,7 +70,6 @@
             this.Controls.Add(this.buttonOnlineMod);
             this.Controls.Add(this.buttonKilepes);
             this.Controls.Add(this.buttonBeallitasok);
-            this.Controls.Add(this.buttonJatekStart);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -90,8 +78,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonJatekStart;
         private System.Windows.Forms.Button buttonOnlineMod;
         private System.Windows.Forms.Button buttonBeallitasok;
         private System.Windows.Forms.Button buttonKilepes;
