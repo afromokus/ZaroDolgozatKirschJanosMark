@@ -25,8 +25,13 @@ namespace _3dLabirintus
         //Milyen mesziről kezdneke el az objektumok láthatóvá válni
         private static int latotav = 10;
         static List<Fal> falak = new List<Fal>();
+        KeyEventHandler kilepesEsemenyKezelo;
 
+        JatekValasztasAblak valasztasAblak;
+
+        #region fel nem használt deklaráció
         public static Color alapszinLatoter = Color.FromArgb(100, 135, 206, 255);
+        #endregion
 
         public Form1()
         {
@@ -52,11 +57,54 @@ namespace _3dLabirintus
 
             Controls.Add(latoter);
 
+            kilepesEsemenyKezelo = new KeyEventHandler(kilepes);
+
+            foGombokraKilepesEsemny();
 
             KeyDown += new KeyEventHandler(billentyuLenyomas);
+            
 
-            buttonJatekStart.Select();
+        }
 
+        private void foGombokraKilepesEsemny()
+        {
+            buttonJatekStart.KeyDown += kilepesEsemenyKezelo;
+            buttonOnlineMod.KeyDown += kilepesEsemenyKezelo;
+            buttonBeallitasok.KeyDown += kilepesEsemenyKezelo;
+            buttonKilepes.KeyDown += kilepesEsemenyKezelo;
+        }
+
+        private void kilepes(object sender, KeyEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        #endregion
+
+        #region gombok metódusai
+
+        private void buttonOnlineMod_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonKilepes_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void buttonJatekStart_Click(object sender, EventArgs e)
+        {
+            Focus();
+
+            valasztasAblak = new JatekValasztasAblak();
+            valasztasAblak.Left = Left;
+            valasztasAblak.Top = Top;
+            Hide();
+            if (valasztasAblak.ShowDialog() == DialogResult.Cancel)
+            {
+                Show();
+            }
         }
 
         #endregion
@@ -372,34 +420,8 @@ namespace _3dLabirintus
 
         #endregion
 
-        private void button2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void buttonKilepes_Click(object sender, EventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-        private void buttonJatekStart_Click(object sender, EventArgs e)
-        {
-            foGombokElrejtese();
-
-            Focus();
-
-            jatekInditas(palyaSzelesseg/2, palyaMagassag/2);
-        }
-
-        private void foGombokElrejtese()
-        {
-            buttonJatekStart.Hide();
-            buttonOnlineMod.Hide();
-            buttonBeallitasok.Hide();
-            buttonKilepes.Hide();
-        }
-
-        private static void jatekInditas(int jatekosKezdoHelyX, int jatekosKezdoHelyY)
+        public static void jatekInditas(int jatekosKezdoHelyX, int jatekosKezdoHelyY)
         {
 
             jatekMegyE = true;

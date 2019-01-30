@@ -49,17 +49,17 @@
             this.buttonOnlineMod.Location = new System.Drawing.Point(275, 138);
             this.buttonOnlineMod.Name = "buttonOnlineMod";
             this.buttonOnlineMod.Size = new System.Drawing.Size(240, 23);
-            this.buttonOnlineMod.TabIndex = 0;
+            this.buttonOnlineMod.TabIndex = 1;
             this.buttonOnlineMod.Text = "Online - mód";
             this.buttonOnlineMod.UseVisualStyleBackColor = true;
-            this.buttonOnlineMod.Click += new System.EventHandler(this.button2_Click);
+            this.buttonOnlineMod.Click += new System.EventHandler(this.buttonOnlineMod_Click);
             // 
             // buttonBeallitasok
             // 
             this.buttonBeallitasok.Location = new System.Drawing.Point(275, 193);
             this.buttonBeallitasok.Name = "buttonBeallitasok";
             this.buttonBeallitasok.Size = new System.Drawing.Size(240, 23);
-            this.buttonBeallitasok.TabIndex = 0;
+            this.buttonBeallitasok.TabIndex = 2;
             this.buttonBeallitasok.Text = "Beállítások";
             this.buttonBeallitasok.UseVisualStyleBackColor = true;
             // 
@@ -68,7 +68,7 @@
             this.buttonKilepes.Location = new System.Drawing.Point(275, 247);
             this.buttonKilepes.Name = "buttonKilepes";
             this.buttonKilepes.Size = new System.Drawing.Size(240, 23);
-            this.buttonKilepes.TabIndex = 0;
+            this.buttonKilepes.TabIndex = 3;
             this.buttonKilepes.Text = "Kilépés";
             this.buttonKilepes.UseVisualStyleBackColor = true;
             this.buttonKilepes.Click += new System.EventHandler(this.buttonKilepes_Click);
