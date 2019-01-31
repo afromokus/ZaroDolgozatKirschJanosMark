@@ -17,7 +17,7 @@ namespace _3dLabirintus.Tests
             Pont elsoPont = new Pont(-1, 3);
             Pont masodikPont = new Pont(-3, 1);
 
-            double tavolsag = Math.Round(Form1.tavolsagSzamitasa(elsoPont, masodikPont),13);
+            double tavolsag = Math.Round(Form3DLabirintus.tavolsagSzamitasa(elsoPont, masodikPont),13);
 
             Assert.AreEqual(tavolsag, 2.8284271247462);
             

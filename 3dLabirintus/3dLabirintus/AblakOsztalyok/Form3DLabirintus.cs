@@ -3,10 +3,11 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using _3dLabirintus.VezerloEsSegedOsztalyok;
+using System.Windows.Media;
 
 namespace _3dLabirintus
 {
-    public partial class Form1 : Form
+    public partial class Form3DLabirintus : Form
     {
         #region deklarálás, alapértékek, inícializálás
         
@@ -18,9 +19,11 @@ namespace _3dLabirintus
         Gomb gombOnlineMod;
         Gomb gombBeallitasok;
         Gomb gombKilepes;
+
+        MediaPlayer videoLabirintus;
         
 
-        public Form1()
+        public Form3DLabirintus()
         {
             InitializeComponent();
         }
@@ -32,18 +35,45 @@ namespace _3dLabirintus
         private void Form1_Load(object sender, EventArgs e)
         {
             Text = "3D Labirintus";
-
             Width = 820;
             Height = 490;
+            MaximizeBox = false;
 
-            BackColor = Color.White;
-
+            BackColor = System.Drawing.Color.White;
             kilepesEsemenyKezelo = new KeyEventHandler(kilepes_ESC);
+            
+
+            videoLabirintus = new MediaPlayer();
+            videoLabirintus.Open(new Uri("Labirintus.mp4"));
+            videoLabirintus.Play();
+
+            /*
+            videoLabirintus.left = (-65, -18);
+            videoLabirintus.settings.setMode("loop", true);
+            videoLabirintus.KeyDownEvent += new AxWMPLib._WMPOCXEvents_KeyDownEventHandler(videoLabirintus_KeyDownEvent);
+            videoLabirintus.PlayStateChange += videoLabirintus_PlayStateChange;*/
+           
+
 
             gombokKonfiguracioja();
 
             foGombokraKilepesAlapEsemny();
+
         }
+
+        /*private void videoLabirintus_PlayStateChange(object sender, _WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (e.newState == 3)
+            {
+                Location = new Point(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height / 4);
+                Width = videoLabirintus.currentMedia.imageSourceWidth - 30;
+                Height = videoLabirintus.currentMedia.imageSourceHeight + 28;
+
+                videoLabirintus.Height = Height + 50;
+                videoLabirintus.Width = Width + 100;
+
+            }
+        }*/
         #endregion
 
         #region gombok konfigurálása
@@ -162,6 +192,21 @@ namespace _3dLabirintus
         }
 
         #endregion
+        /*
+        #region videó beállítások
+
+        private void videoLabirintus_KeyDownEvent(object sender, AxWMPLib._WMPOCXEvents_KeyDownEvent e)
+        {
+            //27 -----> ESC
+            if (e.nKeyCode == 27)
+            {
+                MessageBox.Show(videoLabirintus.currentMedia.imageSourceWidth + "");
+                Environment.Exit(0);
+            }
+        }
+
+
+        #endregion*/
 
     }
 }
