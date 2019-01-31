@@ -68,8 +68,8 @@ namespace _3dLabirintus
 
             gombJatekStart.Location = new Point(267, 83);
             gombOnlineMod.Location = new Point(gombJatekStart.Location.X, gombJatekStart.Location.Y + 55);
-            gombBeallitasok.Location = new Point(gombJatekStart.Location.X, 193);
-            gombKilepes.Location = new Point(gombJatekStart.Location.X, 247);
+            gombBeallitasok.Location = new Point(gombJatekStart.Location.X, gombJatekStart.Location.Y + 110);
+            gombKilepes.Location = new Point(gombJatekStart.Location.X, gombJatekStart.Location.Y + 164);
 
             gombJatekStart.Text = "Játék indítása";
             gombOnlineMod.Text = "Online - mód";
