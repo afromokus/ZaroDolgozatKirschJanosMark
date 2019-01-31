@@ -15,6 +15,9 @@ namespace _3dLabirintus
         JatekValasztasAblak valasztasAblak;
 
         Gomb gombJatekStart;
+        Gomb gombOnlineMod;
+        Gomb gombBeallitasok;
+        Gomb gombKilepes;
         
 
         public Form1()
@@ -30,7 +33,9 @@ namespace _3dLabirintus
         {
             Text = "3D Labirintus";
 
-            kilepesEsemenyKezelo = new KeyEventHandler(kilepes);
+            BackColor = Color.White;
+
+            kilepesEsemenyKezelo = new KeyEventHandler(kilepes_ESC);
 
             gombokAlapKonfiguracioja();
             gombokhozEsemenyekRendeleseFormhozAdas();
@@ -41,29 +46,51 @@ namespace _3dLabirintus
         private void gombokhozEsemenyekRendeleseFormhozAdas()
         {
             gombJatekStart.Click += new EventHandler(gombJatekStart_Click);
+            gombKilepes.Click += new EventHandler(gombKilepes_Click);
 
             Controls.Add(gombJatekStart);
+            Controls.Add(gombOnlineMod);
+            Controls.Add(gombBeallitasok);
+            Controls.Add(gombKilepes);
         }
 
         private void gombokAlapKonfiguracioja()
         {
             gombJatekStart = new Gomb();
+            gombOnlineMod = new Gomb();
+            gombBeallitasok = new Gomb();
+            gombKilepes = new Gomb();
+
             gombJatekStart.Width = 240;
+            gombOnlineMod.Width = gombJatekStart.Width;
+            gombBeallitasok.Width = gombJatekStart.Width;
+            gombKilepes.Width = gombJatekStart.Width;
+
             gombJatekStart.Location = new Point(267, 83);
+            gombOnlineMod.Location = new Point(gombJatekStart.Location.X, gombJatekStart.Location.Y + 55);
+            gombBeallitasok.Location = new Point(gombJatekStart.Location.X, 193);
+            gombKilepes.Location = new Point(gombJatekStart.Location.X, 247);
+
             gombJatekStart.Text = "Játék indítása";
+            gombOnlineMod.Text = "Online - mód";
+            gombBeallitasok.Text = "Beállítások";
+            gombKilepes.Text = "Kilépés";
         }
 
         private void foGombokraKilepesEsemny()
         {
             gombJatekStart.KeyDown += kilepesEsemenyKezelo;
-            buttonOnlineMod.KeyDown += kilepesEsemenyKezelo;
-            buttonBeallitasok.KeyDown += kilepesEsemenyKezelo;
-            buttonKilepes.KeyDown += kilepesEsemenyKezelo;
+            gombOnlineMod.KeyDown += kilepesEsemenyKezelo;
+            gombBeallitasok.KeyDown += kilepesEsemenyKezelo;
+            gombKilepes.KeyDown += kilepesEsemenyKezelo;
         }
 
-        private void kilepes(object sender, KeyEventArgs e)
+        private void kilepes_ESC(object sender, KeyEventArgs e)
         {
-            Environment.Exit(0);
+            if (e.KeyCode == Keys.Escape)
+            {
+                Environment.Exit(0);
+            }
         }
 
         #endregion
@@ -75,7 +102,7 @@ namespace _3dLabirintus
 
         }
 
-        private void buttonKilepes_Click(object sender, EventArgs e)
+        private void gombKilepes_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
         }

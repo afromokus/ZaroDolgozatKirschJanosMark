@@ -52,7 +52,10 @@ namespace _3dLabirintus
 
         private void visszaLepes(object sender, KeyEventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            if (e.KeyCode == Keys.Escape)
+            {
+                DialogResult = DialogResult.Cancel;
+            }
         }
         #endregion
     }

@@ -20,9 +20,9 @@ namespace _3dLabirintus.VezerloEsSegedOsztalyok
             FlatAppearance.BorderSize = 0;
             FlatAppearance.MouseOverBackColor = ablakHatterSzine;
             Font = new Font("", 18, FontStyle.Bold);
-            ForeColor = Color.FromArgb(0,240,240,0);
+            ForeColor = Color.FromArgb(0, 255, 255, 0);
             Height = 50;
 
-            }
+        }
     }
 }
