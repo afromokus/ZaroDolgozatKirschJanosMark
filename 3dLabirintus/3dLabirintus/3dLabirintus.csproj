@@ -49,11 +49,11 @@
     <Compile Include="VezerloEsSegedOsztalyok\Fal.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="AblakOsztalyok\Form1.cs">
+    <Compile Include="AblakOsztalyok\Form3DLabirintus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AblakOsztalyok\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AblakOsztalyok\Form3DLabirintus.Designer.cs">
+      <DependentUpon>Form3DLabirintus.cs</DependentUpon>
     </Compile>
     <Compile Include="AblakOsztalyok\JatekAblak.cs">
       <SubType>Form</SubType>
@@ -73,8 +73,8 @@
     <Compile Include="VezerloEsSegedOsztalyok\Pont.cs" />
     <Compile Include="VezerloEsSegedOsztalyok\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AblakOsztalyok\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AblakOsztalyok\Form3DLabirintus.resx">
+      <DependentUpon>Form3DLabirintus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AblakOsztalyok\JatekAblak.resx">
       <DependentUpon>JatekAblak.cs</DependentUpon>

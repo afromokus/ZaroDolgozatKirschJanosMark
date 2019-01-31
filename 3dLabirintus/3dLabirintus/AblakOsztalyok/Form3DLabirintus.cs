@@ -33,14 +33,33 @@ namespace _3dLabirintus
         {
             Text = "3D Labirintus";
 
+            Width = 820;
+            Height = 490;
+
             BackColor = Color.White;
 
             kilepesEsemenyKezelo = new KeyEventHandler(kilepes_ESC);
 
-            gombokAlapKonfiguracioja();
-            gombokhozEsemenyekRendeleseFormhozAdas();
+            gombokKonfiguracioja();
 
-            foGombokraKilepesEsemny();
+            foGombokraKilepesAlapEsemny();
+        }
+        #endregion
+
+        #region gombok konfigurálása
+
+        private void gombokKonfiguracioja()
+        {
+
+            gombokPeldanyositasa();
+
+            gombokSzelessegenekMegadasa();
+
+            gombokElhelyezkedese();
+
+            gombokFelirata();
+
+            gombokhozEsemenyekRendeleseFormhozAdas();
         }
 
         private void gombokhozEsemenyekRendeleseFormhozAdas()
@@ -54,30 +73,41 @@ namespace _3dLabirintus
             Controls.Add(gombKilepes);
         }
 
-        private void gombokAlapKonfiguracioja()
+        private void gombokFelirata()
         {
-            gombJatekStart = new Gomb();
-            gombOnlineMod = new Gomb();
-            gombBeallitasok = new Gomb();
-            gombKilepes = new Gomb();
-
-            gombJatekStart.Width = 240;
-            gombOnlineMod.Width = gombJatekStart.Width;
-            gombBeallitasok.Width = gombJatekStart.Width;
-            gombKilepes.Width = gombJatekStart.Width;
-
-            gombJatekStart.Location = new Point(267, 83);
-            gombOnlineMod.Location = new Point(gombJatekStart.Location.X, gombJatekStart.Location.Y + 55);
-            gombBeallitasok.Location = new Point(gombJatekStart.Location.X, gombJatekStart.Location.Y + 110);
-            gombKilepes.Location = new Point(gombJatekStart.Location.X, gombJatekStart.Location.Y + 164);
-
             gombJatekStart.Text = "Játék indítása";
             gombOnlineMod.Text = "Online - mód";
             gombBeallitasok.Text = "Beállítások";
             gombKilepes.Text = "Kilépés";
         }
 
-        private void foGombokraKilepesEsemny()
+        private void gombokElhelyezkedese()
+        {
+            gombJatekStart.Location = new Point(Width / 3, 83);
+            gombOnlineMod.Location = new Point(gombJatekStart.Location.X, gombJatekStart.Location.Y + Height / 9);
+            gombBeallitasok.Location = new Point(gombJatekStart.Location.X, Convert.ToInt16(gombJatekStart.Location.Y + Height / 4.5));
+            gombKilepes.Location = new Point(gombJatekStart.Location.X, gombJatekStart.Location.Y + Height / 3);
+        }
+
+        private void gombokSzelessegenekMegadasa()
+        {
+            gombJatekStart.Width = 240;
+            gombOnlineMod.Width = gombJatekStart.Width;
+            gombBeallitasok.Width = gombJatekStart.Width;
+            gombKilepes.Width = gombJatekStart.Width;
+        }
+
+        private void gombokPeldanyositasa()
+        {
+
+            gombJatekStart = new Gomb();
+            gombOnlineMod = new Gomb();
+            gombBeallitasok = new Gomb();
+            gombKilepes = new Gomb();
+
+        }
+
+        private void foGombokraKilepesAlapEsemny()
         {
             gombJatekStart.KeyDown += kilepesEsemenyKezelo;
             gombOnlineMod.KeyDown += kilepesEsemenyKezelo;
@@ -123,11 +153,6 @@ namespace _3dLabirintus
         }
 
         #endregion
-
-
-
-
-
 
         #region fel nem használt kód
         public static double tavolsagSzamitasa(Pont elsoPont, Pont masodikPont)
