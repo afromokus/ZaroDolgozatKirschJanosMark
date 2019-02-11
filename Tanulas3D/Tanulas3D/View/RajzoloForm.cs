@@ -31,17 +31,52 @@ namespace Tanulas3D
         private void elokeszuletek()
         {
 
+            kocka = new Alakzat(keszitKocka());
+
+            vaszon.Invalidate();
+        }
+
+        private List<Haromszog> keszitKocka()
+        {
+
             List<Haromszog> haromszogLista = new List<Haromszog>();
 
             //elülső rész
             haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 0), new Vektor3D(0, 1, 0), new Vektor3D(1, 1, 0)));
             haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 0), new Vektor3D(1, 1, 0), new Vektor3D(1, 0, 0)));
 
+            //jobb oldal
+            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 0), new Vektor3D(1, 1, 0), new Vektor3D(1, 1, 1)));
+            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 0), new Vektor3D(1, 1, 1), new Vektor3D(1, 0, 1)));
 
+            //hátsó rész
+            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 1), new Vektor3D(1, 1, 1), new Vektor3D(0, 0, 1)));
+            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 1), new Vektor3D(0, 1, 1), new Vektor3D(0, 0, 1)));
+
+            //bal oldal
+            haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 1), new Vektor3D(0, 1, 1), new Vektor3D(0, 1, 1)));
+            haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 1), new Vektor3D(0, 1, 0), new Vektor3D(0, 0, 0)));
+
+            //felső rész
+            haromszogLista.Add(new Haromszog(new Vektor3D(0, 1, 0), new Vektor3D(0, 1, 1), new Vektor3D(1, 1, 1)));
+            haromszogLista.Add(new Haromszog(new Vektor3D(0, 1, 0), new Vektor3D(1, 1, 1), new Vektor3D(1, 1, 0)));
+
+            //alsó rész
+            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 1), new Vektor3D(0, 0, 1), new Vektor3D(0, 0, 0)));
+            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 1), new Vektor3D(0, 0, 0), new Vektor3D(1, 0, 0)));
+
+            return haromszogLista;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            Graphics grafika = vaszon.CreateGraphics();
+
+            Pen ceruza = new Pen(Color.Black);
+
+            grafika.DrawLine(ceruza, 10, 10, 200, 150);
+
+            grafika.Clear();
 
         }
 
