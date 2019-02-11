@@ -8,19 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tanulas3D.Model;
+using Tanulas3D.Matrix;
 
 namespace Tanulas3D
 {
+
+    public static class MathExtensions
+    {
+        public static float konvertalFloat(this double ertek)
+        {
+            return (float)ertek;
+        }
+    }
+
     public partial class Form1 : Form
     {
         Alakzat kocka;
+        Mat4x4 matVetulet;
         float keparany;
-        float f;
+
 
         public Form1()
         {
             InitializeComponent();
-            frissitKeparany();
 
         }
 
@@ -42,7 +52,26 @@ namespace Tanulas3D
 
             kocka = new Alakzat(keszitKocka());
 
-            vaszon.Invalidate();
+            float fKozel = 0.1f;
+            float fTavol = 1000;
+            float fLatoter = 90;
+            frissitKeparany();
+            float fLatoRad = 1.0f / Math.Tan(fLatoter / 2f / 180f * 3.141592653589793).konvertalFloat();
+
+            matVetulet.M[0, 0] = keparany * fLatoRad;
+            matVetulet.M[1, 1] = fLatoRad;
+            matVetulet.M[2, 2] = fTavol / (fTavol - fKozel);
+            matVetulet.M[3, 2] = (-fTavol/fKozel)/(fTavol/fKozel);
+            matVetulet.M[2, 3] = 1.0f;
+            matVetulet.M[3, 3] = 0.0f;
+
+        }
+
+        Vektor3D szorozMatrixVektor(Vektor3D be, Mat4x4 mat)
+        {
+            Vektor3D ki = new Vektor3D(be.X*mat.M[0, 0], be.Y * mat.M[1, 1], be.Z * mat.M[2, 2]);
+
+            return ki;
         }
 
         private List<Haromszog> keszitKocka()
@@ -98,5 +127,7 @@ namespace Tanulas3D
         private void vaszon_Paint(object sender, PaintEventArgs e)
         {
         }
+
     }
+
 }

@@ -12,15 +12,15 @@ namespace Tanulas3D.Model
     {
         private float x, y, z;
 
-        public Vektor3D(int x, int y, int z)
+        public Vektor3D(float x, float y, float z)
         {
             this.X = x;
             this.Y = y;
             this.Z = z;
         }
 
-        public int X { get => x; set => x = value; }
-        public int Y { get => y; set => y = value; }
-        public int Z { get => z; set => z = value; }
+        public float X { get => x; set => x = value; }
+        public float Y { get => y; set => y = value; }
+        public float Z { get => z; set => z = value; }
     }
 }
