@@ -14,5 +14,7 @@ namespace Tanulas3D.Model
         {
             this.haromszogLista = haromszogLista;
         }
+
+        internal List<Haromszog> HaromszogLista { get => haromszogLista; set => haromszogLista = value; }
     }
 }

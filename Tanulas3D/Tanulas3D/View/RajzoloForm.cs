@@ -31,6 +31,13 @@ namespace Tanulas3D
         private void elokeszuletek()
         {
 
+            List<Haromszog> haromszogLista = new List<Haromszog>();
+
+            //elülső rész
+            haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 0), new Vektor3D(0, 1, 0), new Vektor3D(1, 1, 0)));
+            haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 0), new Vektor3D(1, 1, 0), new Vektor3D(1, 0, 0)));
+
+
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
