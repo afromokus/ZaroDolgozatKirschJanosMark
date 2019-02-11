@@ -19,8 +19,8 @@ namespace Tanulas3D.Model
             this.v3 = v3;
         }
 
-        internal Vektor3D V1 { get => v1; set => v1 = value; }
-        internal Vektor3D V2 { get => v2; set => v2 = value; }
-        internal Vektor3D V3 { get => v3; set => v3 = value; }
+        public Vektor3D V1 { get => v1; set => v1 = value; }
+        public Vektor3D V2 { get => v2; set => v2 = value; }
+        public Vektor3D V3 { get => v3; set => v3 = value; }
     }
 }

@@ -42,7 +42,7 @@ namespace Tanulas3D
         private void Form1_Load(object sender, EventArgs e)
         {
             vaszon.BackColor = Color.White;
-
+            matVetulet = new Mat4x4();
             elokeszuletek();
 
         }
@@ -56,7 +56,8 @@ namespace Tanulas3D
             float fTavol = 1000;
             float fLatoter = 90;
             frissitKeparany();
-            float fLatoRad = 1.0f / Math.Tan(fLatoter / 2f / 180f * 3.141592653589793).konvertalFloat();
+            float fLatoRad = 1.0f / Math.Tan(fLatoter / 2f).konvertalFloat();
+            double kiírszám = 1 / Math.Tan(fLatoter / 2f);
 
             matVetulet.M[0, 0] = keparany * fLatoRad;
             matVetulet.M[1, 1] = fLatoRad;
@@ -70,6 +71,14 @@ namespace Tanulas3D
         Vektor3D szorozMatrixVektor(Vektor3D be, Mat4x4 mat)
         {
             Vektor3D ki = new Vektor3D(be.X*mat.M[0, 0], be.Y * mat.M[1, 1], be.Z * mat.M[2, 2]);
+            float w = mat.M[2, 3];
+
+            if (w != 0f)
+            {
+                ki.X /= w;
+                ki.Y /= w;
+                ki.Z /= w;
+            }
 
             return ki;
         }
@@ -119,7 +128,8 @@ namespace Tanulas3D
 
             foreach (Haromszog haromszog in kocka.HaromszogLista)
             {
-
+                Haromszog kivetitettHaromszog = new Haromszog(szorozMatrixVektor(haromszog.V1, matVetulet),
+                    szorozMatrixVektor(haromszog.V2, matVetulet), szorozMatrixVektor(haromszog.V3, matVetulet));
             }
 
         }

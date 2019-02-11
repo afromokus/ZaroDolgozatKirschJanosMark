@@ -10,9 +10,9 @@ namespace Tanulas3D.Matrix
     {
         float[,] m = new float[4,  4];
 
-        public Mat4x4(float[,] m)
+        public Mat4x4()
         {
-            this.m = m;
+
         }
 
         public float[,] M { get => m; set => m = value; }
