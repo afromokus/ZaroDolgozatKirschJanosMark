@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tanulas3D.Model;
 using Tanulas3D.Matrix;
+using Tanulas3D.Service;
 
 namespace Tanulas3D
 {
@@ -65,6 +66,7 @@ namespace Tanulas3D
             matVetulet.M[3, 2] = (-fTavol/fKozel)/(fTavol/fKozel);
             matVetulet.M[2, 3] = 1.0f;
             matVetulet.M[3, 3] = 0.0f;
+
 
         }
 
@@ -136,6 +138,7 @@ namespace Tanulas3D
 
         private void vaszon_Paint(object sender, PaintEventArgs e)
         {
+            HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
         }
 
     }
