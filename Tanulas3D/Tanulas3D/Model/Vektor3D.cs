@@ -10,7 +10,7 @@ namespace Tanulas3D.Model
 {
     class Vektor3D
     {
-        private int x, y, z;
+        private float x, y, z;
 
         public Vektor3D(int x, int y, int z)
         {

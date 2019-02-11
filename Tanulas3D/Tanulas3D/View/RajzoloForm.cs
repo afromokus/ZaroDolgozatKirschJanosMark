@@ -14,10 +14,19 @@ namespace Tanulas3D
     public partial class Form1 : Form
     {
         Alakzat kocka;
+        float keparany;
+        float f;
 
         public Form1()
         {
             InitializeComponent();
+            frissitKeparany();
+
+        }
+
+        private void frissitKeparany()
+        {
+            keparany = Height / Width;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -76,7 +85,13 @@ namespace Tanulas3D
 
             grafika.DrawLine(ceruza, 10, 10, 200, 150);
 
-            grafika.Clear();
+            grafika.Clear(Color.White);
+            vaszon.Invalidate();
+
+            foreach (Haromszog haromszog in kocka.HaromszogLista)
+            {
+
+            }
 
         }
 
