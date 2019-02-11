@@ -14,9 +14,11 @@ namespace Tanulas3D
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form1 RajzoloForm = new Form1();
+            Application.Run(RajzoloForm);
         }
     }
 }
