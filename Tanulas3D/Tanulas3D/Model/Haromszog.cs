@@ -12,8 +12,18 @@ namespace Tanulas3D.Model
         Pont3D p2;
         Pont3D p3;
 
+        public Haromszog(Haromszog h)
+        {
+            p1 = h.p1;
+            p2 = h.p2;
+            p3 = h.p3;
+        }
+
         public Haromszog()
         {
+            p1 = new Pont3D();
+            p2 = new Pont3D();
+            p3 = new Pont3D();
         }
 
         public Haromszog(Pont3D v1, Pont3D v2, Pont3D v3)

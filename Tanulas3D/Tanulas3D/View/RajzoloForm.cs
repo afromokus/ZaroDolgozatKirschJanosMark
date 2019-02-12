@@ -27,6 +27,8 @@ namespace Tanulas3D
     {
         Alakzat kocka;
         Mat4x4 matVetulet;
+        Mat4x4 matForgatasZ;
+        Mat4x4 matForgatasX;
         float keparany;
         float fKozel;
         float fTavol;
@@ -50,6 +52,8 @@ namespace Tanulas3D
         {
             vaszon.BackColor = Color.White;
             matVetulet = new Mat4x4();
+            matForgatasX = new Mat4x4();
+            matForgatasZ = new Mat4x4();
             elokeszuletek();
 
         }
@@ -86,11 +90,28 @@ namespace Tanulas3D
             frissitKeparany();
             q = fTavol / (fKozel - fTavol);
 
+            //matVetulet
             matVetulet.M[0, 0] = keparany * fLatoRad;
             matVetulet.M[1, 1] = fLatoRad;
             matVetulet.M[2, 2] = q;
             matVetulet.M[2, 3] = 1f;
             matVetulet.M[3, 3] = 0f;
+
+            //forgatás z
+            matForgatasX.M[0, 0] = 1f;
+            matForgatasX.M[1, 1] = Math.Cos(fLatoter / 2).konvertalFloat();
+            matForgatasX.M[1, 2] = Math.Sin(fLatoter / 2).konvertalFloat();
+            matForgatasX.M[2, 1] = -Math.Sin(fLatoter / 2).konvertalFloat();
+            matForgatasX.M[2, 2] = Math.Cos(fLatoter / 2).konvertalFloat();
+            matForgatasX.M[3, 3] = 1f;
+
+            //forgatás x
+            matForgatasZ.M[0, 0] = 1f;
+            matForgatasZ.M[1, 1] = 1f;
+            matForgatasZ.M[1, 2] = 1f;
+            matForgatasZ.M[2, 1] = 1f;
+            matForgatasZ.M[2, 2] = 1f;
+            matForgatasZ.M[3, 3] = 1f;
 
         }
         private List<Haromszog> keszitKocka()
@@ -127,32 +148,52 @@ namespace Tanulas3D
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
-
-            foreach (Haromszog haromszog in kocka.HaromszogLista)
+            while (true)
             {
-                haromszog.P1.Z += 3f;
-                haromszog.P2.Z += 3f;
-                haromszog.P3.Z += 3f;
+                HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
 
-                Haromszog kivetiettHaromszog = new Haromszog();
+                foreach (Haromszog haromszog in kocka.HaromszogLista)
+                {
+                    Haromszog elforgatottHaromszogZ = new Haromszog(haromszog);
 
-                kivetiettHaromszog.P1 = szorzasMatrixPonttal(haromszog.P1, matVetulet);
-                kivetiettHaromszog.P2 = szorzasMatrixPonttal(haromszog.P2, matVetulet);
-                kivetiettHaromszog.P3 = szorzasMatrixPonttal(haromszog.P3, matVetulet);
+                    elforgatottHaromszogZ.P1 = szorzasMatrixPonttal(haromszog.P1, matForgatasZ);
+                    elforgatottHaromszogZ.P2 = szorzasMatrixPonttal(haromszog.P2, matForgatasZ);
+                    elforgatottHaromszogZ.P3 = szorzasMatrixPonttal(haromszog.P3, matForgatasZ);
+
+                    Haromszog elforgatottHaromszogZX = new Haromszog(elforgatottHaromszogZ);
+
+                    elforgatottHaromszogZX.P1 = szorzasMatrixPonttal(elforgatottHaromszogZ.P1, matForgatasX);
+                    elforgatottHaromszogZX.P2 = szorzasMatrixPonttal(elforgatottHaromszogZ.P2, matForgatasX);
+                    elforgatottHaromszogZX.P3 = szorzasMatrixPonttal(elforgatottHaromszogZ.P3, matForgatasX);
+
+                    //másolat készítése eltolás elott, melyet eltolunk
+                    Haromszog eltoltHaromszog = new Haromszog(elforgatottHaromszogZX);
+
+                    eltoltHaromszog.P1.Z += 3f;
+                    eltoltHaromszog.P2.Z += 3f;
+                    eltoltHaromszog.P3.Z += 3f;
+
+                    Haromszog kivetiettHaromszog = new Haromszog();
+
+                    kivetiettHaromszog.P1 = szorzasMatrixPonttal(eltoltHaromszog.P1, matVetulet);
+                    kivetiettHaromszog.P2 = szorzasMatrixPonttal(eltoltHaromszog.P2, matVetulet);
+                    kivetiettHaromszog.P3 = szorzasMatrixPonttal(eltoltHaromszog.P3, matVetulet);
 
 
-                kivetiettHaromszog.P1.X *= Width / 2;
-                kivetiettHaromszog.P1.Y *= Height / 2;
-                kivetiettHaromszog.P2.X *= Width / 2;
-                kivetiettHaromszog.P2.Y *= Height / 2;
-                kivetiettHaromszog.P3.X *= Width / 2;
-                kivetiettHaromszog.P3.Y *= Height / 2;
+                    kivetiettHaromszog.P1.X *= Width / 2;
+                    kivetiettHaromszog.P1.Y *= Height / 2;
+                    kivetiettHaromszog.P2.X *= Width / 2;
+                    kivetiettHaromszog.P2.Y *= Height / 2;
+                    kivetiettHaromszog.P3.X *= Width / 2;
+                    kivetiettHaromszog.P3.Y *= Height / 2;
 
-                kivetiettHaromszog.eltolas(300);
+                    kivetiettHaromszog.eltolas(300);
 
 
-                rajzolo.rajzolHaromszog(kivetiettHaromszog.P1, kivetiettHaromszog.P2, kivetiettHaromszog.P3);
+                    rajzolo.rajzolHaromszog(kivetiettHaromszog.P1, kivetiettHaromszog.P2, kivetiettHaromszog.P3);
+                    
+                }
+                System.Threading.Thread.Sleep(100);
             }
 
         }
