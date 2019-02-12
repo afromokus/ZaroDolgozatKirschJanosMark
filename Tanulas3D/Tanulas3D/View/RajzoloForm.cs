@@ -60,7 +60,15 @@ namespace Tanulas3D
 
             ki.X = be.X * m.M[0, 0] + be.Y * m.M[1, 0] + be.Z * m.M[2, 0] + m.M[3, 0];
             ki.Y = be.Y * m.M[0, 1] + be.Y * m.M[1, 1] + be.Z * m.M[2, 1] + m.M[3, 1];
-            ki.Z = be.Y * m.M[0, 1] + be.Y * m.M[1, 1] + be.Z * m.M[2, 1] + m.M[3, 1];
+            ki.Z = be.Z * m.M[0, 2] + be.Z * m.M[1, 2] + be.Z * m.M[2, 2] + m.M[3, 2];
+            float w = be.Z * m.M[0, 3] + be.Z * m.M[1, 3] + be.Z * m.M[2, 3] + m.M[3, 3];
+
+            if (w != 0)
+            {
+                ki.X /= w;
+                ki.Y /= w;
+                ki.Z /= w;
+            }
 
             return ki;
         }
@@ -78,23 +86,13 @@ namespace Tanulas3D
             frissitKeparany();
             q = fTavol / (fKozel - fTavol);
 
+            matVetulet.M[0, 0] = keparany * fLatoRad;
+            matVetulet.M[1, 1] = fLatoRad;
+            matVetulet.M[2, 2] = q;
+            matVetulet.M[2, 3] = 1f;
+            matVetulet.M[3, 3] = 0f;
+
         }
-
-        Pont3D szorozMatrixVektor(Pont3D be, Mat4x4 mat)
-        {
-            Pont3D ki = new Pont3D(be.X*mat.M[0, 0], be.Y * mat.M[1, 1], be.Z * mat.M[2, 2]);
-            float w = mat.M[2, 3];
-
-            if (w != 0f)
-            {
-                ki.X /= w;
-                ki.Y /= w;
-                ki.Z /= w;
-            }
-
-            return ki;
-        }
-
         private List<Haromszog> keszitKocka()
         {
 
@@ -137,18 +135,22 @@ namespace Tanulas3D
                 haromszog.P2.Z += 3f;
                 haromszog.P3.Z += 3f;
 
-                HaromszogVetulet kivetitettHaromszog = new HaromszogVetulet(haromszog.P1.konvertalPont2Dre(keparany, fLatoRad),
-                    haromszog.P2.konvertalPont2Dre(keparany, fLatoRad), haromszog.P2.konvertalPont2Dre(keparany, fLatoRad));
+                Haromszog kivetiettHaromszog = new Haromszog();
 
-                kivetitettHaromszog.P1.X *= Width / 2;
-                kivetitettHaromszog.P1.Y *= Height / 2;
-                kivetitettHaromszog.P2.X *= Width / 2;
-                kivetitettHaromszog.P2.Y *= Height / 2;
-                kivetitettHaromszog.P3.X *= Width / 2;
-                kivetitettHaromszog.P3.Y *= Height / 2;
+                kivetiettHaromszog.P1 = szorzasMatrixPonttal(kivetiettHaromszog.P1, matVetulet);
+                kivetiettHaromszog.P2 = szorzasMatrixPonttal(kivetiettHaromszog.P2, matVetulet);
+                kivetiettHaromszog.P3 = szorzasMatrixPonttal(kivetiettHaromszog.P3, matVetulet);
 
 
-                rajzolo.rajzolHaromszog(kivetitettHaromszog.P1, kivetitettHaromszog.P2, kivetitettHaromszog.P3);
+                haromszog.P1.X *= Width / 2;
+                haromszog.P1.Y *= Height / 2;
+                haromszog.P2.X *= Width / 2;
+                haromszog.P2.Y *= Height / 2;
+                haromszog.P3.X *= Width / 2;
+                haromszog.P3.Y *= Height / 2;
+
+
+                rajzolo.rajzolHaromszog(haromszog.P1, haromszog.P2, haromszog.P3);
             }
 
         }
