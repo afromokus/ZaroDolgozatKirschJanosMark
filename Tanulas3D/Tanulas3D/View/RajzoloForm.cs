@@ -68,6 +68,7 @@ namespace Tanulas3D
             matVetulet.M[3, 3] = 0.0f;
 
 
+
         }
 
         Vektor3D szorozMatrixVektor(Vektor3D be, Mat4x4 mat)
@@ -119,26 +120,19 @@ namespace Tanulas3D
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Graphics grafika = vaszon.CreateGraphics();
-
-            Pen ceruza = new Pen(Color.Black);
-
-            grafika.DrawLine(ceruza, 10, 10, 200, 150);
-
-            grafika.Clear(Color.White);
-            vaszon.Invalidate();
+            HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
 
             foreach (Haromszog haromszog in kocka.HaromszogLista)
             {
                 Haromszog kivetitettHaromszog = new Haromszog(szorozMatrixVektor(haromszog.V1, matVetulet),
                     szorozMatrixVektor(haromszog.V2, matVetulet), szorozMatrixVektor(haromszog.V3, matVetulet));
             }
-
+            
+            rajzolo.rajzolHaromszog(5, 5, 50, 100, 150, 150);
         }
 
         private void vaszon_Paint(object sender, PaintEventArgs e)
         {
-            HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
         }
 
     }
