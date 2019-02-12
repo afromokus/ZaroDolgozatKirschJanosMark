@@ -12,7 +12,13 @@ namespace Tanulas3D.Matrix
 
         public Mat4x4()
         {
-
+            for (int j = 0; j < 4; j++)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    m[j, i] = 0;
+                }
+            }
         }
 
         public float[,] M { get => m; set => m = value; }

@@ -56,9 +56,11 @@ namespace Tanulas3D
 
         Pont3D szorzasMatrixPonttal(Pont3D be, Mat4x4 m)
         {
-            Pont3D ki = new Pont3D();
+            Pont3D ki = new Pont3D(0,0,0);
 
-            ki.X = be.X * m.M[0, 0] + be.Y * m.M[1, 0] + be.Z * m.M[2, 0] + m.M[3, 0];
+            MessageBox.Show(be.X + "");
+
+            /*ki.X = be.X * m.M[0, 0] + be.Y * m.M[1, 0] + be.Z * m.M[2, 0] + m.M[3, 0];
             ki.Y = be.Y * m.M[0, 1] + be.Y * m.M[1, 1] + be.Z * m.M[2, 1] + m.M[3, 1];
             ki.Z = be.Z * m.M[0, 2] + be.Z * m.M[1, 2] + be.Z * m.M[2, 2] + m.M[3, 2];
             float w = be.Z * m.M[0, 3] + be.Z * m.M[1, 3] + be.Z * m.M[2, 3] + m.M[3, 3];
@@ -68,7 +70,7 @@ namespace Tanulas3D
                 ki.X /= w;
                 ki.Y /= w;
                 ki.Z /= w;
-            }
+            }*/
 
             return ki;
         }
