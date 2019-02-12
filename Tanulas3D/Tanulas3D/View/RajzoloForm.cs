@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Tanulas3D.Model;
 using Tanulas3D.Matrix;
 using Tanulas3D.Service;
+using Tanulas3D.Model.Vektorok;
 
 namespace Tanulas3D
 {
@@ -27,6 +28,11 @@ namespace Tanulas3D
         Alakzat kocka;
         Mat4x4 matVetulet;
         float keparany;
+        float fKozel;
+        float fTavol;
+        float fLatoter;
+        float fLatoRad;
+        float q;
 
 
         public Form1()
@@ -53,21 +59,13 @@ namespace Tanulas3D
 
             kocka = new Alakzat(keszitKocka());
 
-            float fKozel = 0.1f;
-            float fTavol = 1000;
-            float fLatoter = 90;
+            fKozel = 0.1f;
+            fTavol = 1000;
+            fLatoter = 90;
             frissitKeparany();
-            float fLatoRad = 1.0f / Math.Tan(fLatoter / 2f).konvertalFloat();
-            double kiírszám = 1 / Math.Tan(fLatoter / 2f);
-
-            matVetulet.M[0, 0] = keparany * fLatoRad;
-            matVetulet.M[1, 1] = fLatoRad;
-            matVetulet.M[2, 2] = fTavol / (fTavol - fKozel);
-            matVetulet.M[3, 2] = (-fTavol/fKozel)/(fTavol/fKozel);
-            matVetulet.M[2, 3] = 1.0f;
-            matVetulet.M[3, 3] = 0.0f;
-
-
+            fLatoRad = 1.0f / Math.Tan(fLatoter / 2f).konvertalFloat();
+            frissitKeparany();
+            q = fTavol / (fKozel - fTavol);
 
         }
 
@@ -124,11 +122,19 @@ namespace Tanulas3D
 
             foreach (Haromszog haromszog in kocka.HaromszogLista)
             {
-                Haromszog kivetitettHaromszog = new Haromszog(szorozMatrixVektor(haromszog.V1, matVetulet),
-                    szorozMatrixVektor(haromszog.V2, matVetulet), szorozMatrixVektor(haromszog.V3, matVetulet));
+                /*haromszog.felulIrHaromszog(konvertalHaromszog2D(haromszog));
+
+                haromszog.V1.X *= Width / 5;
+                haromszog.V1.Y *= Height / 5;
+                haromszog.V2.X *= Width / 5;
+                haromszog.V2.Y *= Height / 5;
+                haromszog.V3.X *= Width / 5;
+                haromszog.V3.Y *= Height / 5;
+                
+
+                rajzolo.rajzolHaromszog(haromszog);*/
             }
-            
-            rajzolo.rajzolHaromszog(5, 5, 50, 100, 150, 150);
+
         }
 
         private void vaszon_Paint(object sender, PaintEventArgs e)

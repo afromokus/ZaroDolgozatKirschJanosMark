@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
-using System.Windows.Forms;
 
-namespace Tanulas3D.Model
+namespace Tanulas3D.Model.Vektorok
 {
-    class Vektor3D
+    class Vektor2D
     {
-        private float x, y, z;
+        private float x, y;
 
-        public Vektor3D(float x, float y, float z)
+        public Vektor2D()
+        {
+        }
+
+        public Vektor2D(float x, float y)
         {
             this.X = x;
             this.Y = y;
-            this.Z = z;
         }
 
         public float X { get => x; set => x = value; }
         public float Y { get => y; set => y = value; }
-        public float Z { get => z; set => z = value; }
     }
 }

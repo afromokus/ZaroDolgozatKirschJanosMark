@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using Tanulas3D.Model;
 
 namespace Tanulas3D.Service
 {
@@ -24,12 +25,12 @@ namespace Tanulas3D.Service
             ceruza = new Pen(Color.Black);
         }
 
-        public void rajzolHaromszog(int x01, int y01, int x02, int y02, int x11, int y11)
+        public void rajzolHaromszog(Haromszog h)
         {
 
-            grafika.DrawLine(ceruza, x01, y01, x02, y02);
-            grafika.DrawLine(ceruza, x02, y02, x11, y11);
-            grafika.DrawLine(ceruza, x11, y11, x01, y01);
+            grafika.DrawLine(ceruza, h.V1.X, h.V1.Y, h.V2.X, h.V2.Y);
+            grafika.DrawLine(ceruza, h.V2.X, h.V2.Y, h.V3.X, h.V3.Y);
+            grafika.DrawLine(ceruza, h.V3.X, h.V3.Y, h.V1.X, h.V1.Y);
 
         }
 
