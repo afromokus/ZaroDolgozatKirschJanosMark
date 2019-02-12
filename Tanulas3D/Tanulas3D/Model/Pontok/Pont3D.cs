@@ -35,8 +35,6 @@ namespace Tanulas3D.Model
             {
                 p2d.X /= Z;
             }
-            MessageBox.Show("Kétdimenziós pont: " + p2d.X + " (x)\t" + p2d.Y + " (y)\n" +
-                "Képarány:\t" + keparany + "\nLátoszög radiánban: " + fLatoRad);
 
             //y
             p2d.Y = Y * fLatoRad;
@@ -44,7 +42,6 @@ namespace Tanulas3D.Model
             {
                 p2d.Y /= Z;
             }
-            MessageBox.Show(p2d.Y + "");
 
             return p2d;
         }

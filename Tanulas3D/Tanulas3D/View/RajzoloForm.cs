@@ -44,7 +44,6 @@ namespace Tanulas3D
         private void frissitKeparany()
         {
             keparany = (float)Height / Width;
-            MessageBox.Show(Height + " " + Width);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -53,6 +52,17 @@ namespace Tanulas3D
             matVetulet = new Mat4x4();
             elokeszuletek();
 
+        }
+
+        Pont3D szorzasMatrixPonttal(Pont3D be, Mat4x4 m)
+        {
+            Pont3D ki = new Pont3D();
+
+            ki.X = be.X * m.M[0, 0] + be.Y * m.M[1, 0] + be.Z * m.M[2, 0] + m.M[3, 0];
+            ki.Y = be.Y * m.M[0, 1] + be.Y * m.M[1, 1] + be.Z * m.M[2, 1] + m.M[3, 1];
+            ki.Z = be.Y * m.M[0, 1] + be.Y * m.M[1, 1] + be.Z * m.M[2, 1] + m.M[3, 1];
+
+            return ki;
         }
 
         private void elokeszuletek()
@@ -66,7 +76,6 @@ namespace Tanulas3D
             frissitKeparany();
             fLatoRad = 1.0f / Math.Tan(fLatoter / 2f).konvertalFloat();
             frissitKeparany();
-            MessageBox.Show("Képarány futáskor: " + keparany);
             q = fTavol / (fKozel - fTavol);
 
         }
@@ -124,17 +133,19 @@ namespace Tanulas3D
 
             foreach (Haromszog haromszog in kocka.HaromszogLista)
             {
+                haromszog.P1.Z += 3f;
+                haromszog.P2.Z += 3f;
+                haromszog.P3.Z += 3f;
+
                 HaromszogVetulet kivetitettHaromszog = new HaromszogVetulet(haromszog.P1.konvertalPont2Dre(keparany, fLatoRad),
                     haromszog.P2.konvertalPont2Dre(keparany, fLatoRad), haromszog.P2.konvertalPont2Dre(keparany, fLatoRad));
 
-
-
-                kivetitettHaromszog.P1.X *= Width / 5;
-                kivetitettHaromszog.P1.Y *= Height / 5;
-                kivetitettHaromszog.P2.X *= Width / 5;
-                kivetitettHaromszog.P2.Y *= Height / 5;
-                kivetitettHaromszog.P3.X *= Width / 5;
-                kivetitettHaromszog.P3.Y *= Height / 5;
+                kivetitettHaromszog.P1.X *= Width / 2;
+                kivetitettHaromszog.P1.Y *= Height / 2;
+                kivetitettHaromszog.P2.X *= Width / 2;
+                kivetitettHaromszog.P2.Y *= Height / 2;
+                kivetitettHaromszog.P3.X *= Width / 2;
+                kivetitettHaromszog.P3.Y *= Height / 2;
 
 
                 rajzolo.rajzolHaromszog(kivetitettHaromszog.P1, kivetitettHaromszog.P2, kivetitettHaromszog.P3);
