@@ -41,5 +41,14 @@ namespace Tanulas3D.Model
                 "Pont 3: (" + p3.X + ", " + p3.Y + ")\n";
         }
 
+        internal void eltolas(int mennyiseg)
+        {
+            p1.X += mennyiseg;
+            p1.Y += mennyiseg;
+            p2.X += mennyiseg;
+            p2.Y += mennyiseg;
+            p3.X += mennyiseg;
+            p3.Y += mennyiseg;
+        }
     }
 }

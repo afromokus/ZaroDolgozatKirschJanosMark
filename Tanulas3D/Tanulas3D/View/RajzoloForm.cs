@@ -58,9 +58,7 @@ namespace Tanulas3D
         {
             Pont3D ki = new Pont3D(0,0,0);
 
-            MessageBox.Show(be.X + "");
-
-            /*ki.X = be.X * m.M[0, 0] + be.Y * m.M[1, 0] + be.Z * m.M[2, 0] + m.M[3, 0];
+            ki.X = be.X * m.M[0, 0] + be.Y * m.M[1, 0] + be.Z * m.M[2, 0] + m.M[3, 0];
             ki.Y = be.Y * m.M[0, 1] + be.Y * m.M[1, 1] + be.Z * m.M[2, 1] + m.M[3, 1];
             ki.Z = be.Z * m.M[0, 2] + be.Z * m.M[1, 2] + be.Z * m.M[2, 2] + m.M[3, 2];
             float w = be.Z * m.M[0, 3] + be.Z * m.M[1, 3] + be.Z * m.M[2, 3] + m.M[3, 3];
@@ -70,7 +68,7 @@ namespace Tanulas3D
                 ki.X /= w;
                 ki.Y /= w;
                 ki.Z /= w;
-            }*/
+            }
 
             return ki;
         }
@@ -139,20 +137,22 @@ namespace Tanulas3D
 
                 Haromszog kivetiettHaromszog = new Haromszog();
 
-                kivetiettHaromszog.P1 = szorzasMatrixPonttal(kivetiettHaromszog.P1, matVetulet);
-                kivetiettHaromszog.P2 = szorzasMatrixPonttal(kivetiettHaromszog.P2, matVetulet);
-                kivetiettHaromszog.P3 = szorzasMatrixPonttal(kivetiettHaromszog.P3, matVetulet);
+                kivetiettHaromszog.P1 = szorzasMatrixPonttal(haromszog.P1, matVetulet);
+                kivetiettHaromszog.P2 = szorzasMatrixPonttal(haromszog.P2, matVetulet);
+                kivetiettHaromszog.P3 = szorzasMatrixPonttal(haromszog.P3, matVetulet);
 
 
-                haromszog.P1.X *= Width / 2;
-                haromszog.P1.Y *= Height / 2;
-                haromszog.P2.X *= Width / 2;
-                haromszog.P2.Y *= Height / 2;
-                haromszog.P3.X *= Width / 2;
-                haromszog.P3.Y *= Height / 2;
+                kivetiettHaromszog.P1.X *= Width / 2;
+                kivetiettHaromszog.P1.Y *= Height / 2;
+                kivetiettHaromszog.P2.X *= Width / 2;
+                kivetiettHaromszog.P2.Y *= Height / 2;
+                kivetiettHaromszog.P3.X *= Width / 2;
+                kivetiettHaromszog.P3.Y *= Height / 2;
+
+                kivetiettHaromszog.eltolas(300);
 
 
-                rajzolo.rajzolHaromszog(haromszog.P1, haromszog.P2, haromszog.P3);
+                rajzolo.rajzolHaromszog(kivetiettHaromszog.P1, kivetiettHaromszog.P2, kivetiettHaromszog.P3);
             }
 
         }
