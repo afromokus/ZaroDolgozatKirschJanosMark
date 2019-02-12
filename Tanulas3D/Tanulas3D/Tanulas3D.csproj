@@ -49,12 +49,14 @@
     <Compile Include="Matrix\Mat4x4.cs" />
     <Compile Include="Model\Alakzat.cs" />
     <Compile Include="Model\Haromszog.cs" />
+    <Compile Include="Model\HaromszogVetulet.cs" />
+    <Compile Include="Model\Pontok\Pont2D.cs" />
     <Compile Include="Service\HaromszogRajzolo.cs" />
     <Compile Include="View\RajzoloForm.cs" />
     <Compile Include="View\RajzoloForm.Designer.cs">
       <DependentUpon>RajzoloForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Vektor3D.cs" />
+    <Compile Include="Model\Pontok\Pont3D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="View\RajzoloForm.resx">

@@ -9,40 +9,44 @@ using Tanulas3D.Model.Vektorok;
 
 namespace Tanulas3D.Model
 {
-    class Vektor3D
+    class Pont3D
     {
         private float x, y, z;
 
-        public Vektor3D()
+        public Pont3D()
         {
         }
 
-        public Vektor3D(float x, float y, float z)
+        public Pont3D(float x, float y, float z)
         {
             this.X = x;
             this.Y = y;
             this.Z = z;
         }
 
-        Vektor2D konvertalVektor2Dre(float keparany, float fLatoRad)
+        public Pont2D konvertalPont2Dre(float keparany, float fLatoRad)
         {
-            Vektor2D v2d = new Vektor2D();
+            Pont2D p2d = new Pont2D();
 
             //x
-            v2d.X = X * keparany * fLatoRad;
+            p2d.X = X * keparany * fLatoRad;
+            
             if (Z != 0)
             {
-                v2d.X /= Z;
+                p2d.X /= Z;
             }
+            MessageBox.Show("Kétdimenziós pont: " + p2d.X + " (x)\t" + p2d.Y + " (y)\n" +
+                "Képarány:\t" + keparany + "\nLátoszög radiánban: " + fLatoRad);
 
             //y
-            v2d.Y = Y * fLatoRad;
+            p2d.Y = Y * fLatoRad;
             if (Z != 0)
             {
-                v2d.Y /= Z;
+                p2d.Y /= Z;
             }
+            MessageBox.Show(p2d.Y + "");
 
-            return v2d;
+            return p2d;
         }
 
         public float X { get => x; set => x = value; }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using Tanulas3D.Model;
+using Tanulas3D.Model.Vektorok;
 
 namespace Tanulas3D.Service
 {
@@ -25,12 +26,22 @@ namespace Tanulas3D.Service
             ceruza = new Pen(Color.Black);
         }
 
-        public void rajzolHaromszog(Haromszog h)
+        public void rajzolHaromszog(Pont2D p1, Pont2D p2, Pont2D p3)
         {
 
-            grafika.DrawLine(ceruza, h.V1.X, h.V1.Y, h.V2.X, h.V2.Y);
-            grafika.DrawLine(ceruza, h.V2.X, h.V2.Y, h.V3.X, h.V3.Y);
-            grafika.DrawLine(ceruza, h.V3.X, h.V3.Y, h.V1.X, h.V1.Y);
+            grafika.DrawLine(ceruza, p1.X, p1.Y, p2.X, p2.Y);
+            grafika.DrawLine(ceruza, p2.X, p2.Y, p3.X, p3.Y);
+            grafika.DrawLine(ceruza, p3.X, p3.Y, p1.X, p1.Y);
+
+        }
+
+        public void rajzolHaromszog(Pont3D p1, Pont3D p2, Pont3D p3)
+        {
+
+
+            grafika.DrawLine(ceruza, p1.X, p1.Y, p2.X, p2.Y);
+            grafika.DrawLine(ceruza, p2.X, p2.Y, p3.X, p3.Y);
+            grafika.DrawLine(ceruza, p3.X, p3.Y, p1.X, p1.Y);
 
         }
 

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Tanulas3D.Model.Vektorok
 {
-    class Vektor2D
+    class Pont2D
     {
         private float x, y;
 
-        public Vektor2D()
+        public Pont2D()
         {
         }
 
-        public Vektor2D(float x, float y)
+        public Pont2D(float x, float y)
         {
             this.X = x;
             this.Y = y;

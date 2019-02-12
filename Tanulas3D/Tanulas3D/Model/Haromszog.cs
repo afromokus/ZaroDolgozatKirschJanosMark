@@ -8,37 +8,37 @@ namespace Tanulas3D.Model
 {
     class Haromszog
     {
-        Vektor3D v1;
-        Vektor3D v2;
-        Vektor3D v3;
+        Pont3D p1;
+        Pont3D p2;
+        Pont3D p3;
 
         public Haromszog()
         {
         }
 
-        public Haromszog(Vektor3D v1, Vektor3D v2, Vektor3D v3)
+        public Haromszog(Pont3D v1, Pont3D v2, Pont3D v3)
         {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.v3 = v3;
+            this.p1 = v1;
+            this.p2 = v2;
+            this.p3 = v3;
         }
 
-        public Vektor3D V1 { get => v1; set => v1 = value; }
-        public Vektor3D V2 { get => v2; set => v2 = value; }
-        public Vektor3D V3 { get => v3; set => v3 = value; }
+        public Pont3D P1 { get => p1; set => p1 = value; }
+        public Pont3D P2 { get => p2; set => p2 = value; }
+        public Pont3D P3 { get => p3; set => p3 = value; }
 
         public void felulIrHaromszog(Haromszog h)
         {
-            v1 = h.v1;
-            v2 = h.v2;
-            v3 = h.v3;
+            p1 = h.p1;
+            p2 = h.p2;
+            p3 = h.p3;
         }
 
 
         public override string ToString()
         {
-            return "Vektor 1: (" + v1.X + ", " + v1.Y + ")\n" + "Vektor 2: (" + v2.X + ", " + v2.Y + ")\n" + 
-                "Vektor 3: (" + v3.X + ", " + v3.Y + ")\n";
+            return "Pont 1: (" + p1.X + ", " + p1.Y + ")\n" + "Pont 2: (" + p2.X + ", " + p2.Y + ")\n" + 
+                "Pont 3: (" + p3.X + ", " + p3.Y + ")\n";
         }
 
     }

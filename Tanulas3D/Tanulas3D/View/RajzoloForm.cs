@@ -43,7 +43,8 @@ namespace Tanulas3D
 
         private void frissitKeparany()
         {
-            keparany = Height / Width;
+            keparany = (float)Height / Width;
+            MessageBox.Show(Height + " " + Width);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -65,13 +66,14 @@ namespace Tanulas3D
             frissitKeparany();
             fLatoRad = 1.0f / Math.Tan(fLatoter / 2f).konvertalFloat();
             frissitKeparany();
+            MessageBox.Show("Képarány futáskor: " + keparany);
             q = fTavol / (fKozel - fTavol);
 
         }
 
-        Vektor3D szorozMatrixVektor(Vektor3D be, Mat4x4 mat)
+        Pont3D szorozMatrixVektor(Pont3D be, Mat4x4 mat)
         {
-            Vektor3D ki = new Vektor3D(be.X*mat.M[0, 0], be.Y * mat.M[1, 1], be.Z * mat.M[2, 2]);
+            Pont3D ki = new Pont3D(be.X*mat.M[0, 0], be.Y * mat.M[1, 1], be.Z * mat.M[2, 2]);
             float w = mat.M[2, 3];
 
             if (w != 0f)
@@ -90,28 +92,28 @@ namespace Tanulas3D
             List<Haromszog> haromszogLista = new List<Haromszog>();
 
             //elülső rész
-            haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 0), new Vektor3D(0, 1, 0), new Vektor3D(1, 1, 0)));
-            haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 0), new Vektor3D(1, 1, 0), new Vektor3D(1, 0, 0)));
+            haromszogLista.Add(new Haromszog(new Pont3D(0, 0, 0), new Pont3D(0, 1, 0), new Pont3D(1, 1, 0)));
+            haromszogLista.Add(new Haromszog(new Pont3D(0, 0, 0), new Pont3D(1, 1, 0), new Pont3D(1, 0, 0)));
 
             //jobb oldal
-            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 0), new Vektor3D(1, 1, 0), new Vektor3D(1, 1, 1)));
-            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 0), new Vektor3D(1, 1, 1), new Vektor3D(1, 0, 1)));
+            haromszogLista.Add(new Haromszog(new Pont3D(1, 0, 0), new Pont3D(1, 1, 0), new Pont3D(1, 1, 1)));
+            haromszogLista.Add(new Haromszog(new Pont3D(1, 0, 0), new Pont3D(1, 1, 1), new Pont3D(1, 0, 1)));
 
             //hátsó rész
-            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 1), new Vektor3D(1, 1, 1), new Vektor3D(0, 0, 1)));
-            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 1), new Vektor3D(0, 1, 1), new Vektor3D(0, 0, 1)));
+            haromszogLista.Add(new Haromszog(new Pont3D(1, 0, 1), new Pont3D(1, 1, 1), new Pont3D(0, 0, 1)));
+            haromszogLista.Add(new Haromszog(new Pont3D(1, 0, 1), new Pont3D(0, 1, 1), new Pont3D(0, 0, 1)));
 
             //bal oldal
-            haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 1), new Vektor3D(0, 1, 1), new Vektor3D(0, 1, 1)));
-            haromszogLista.Add(new Haromszog(new Vektor3D(0, 0, 1), new Vektor3D(0, 1, 0), new Vektor3D(0, 0, 0)));
+            haromszogLista.Add(new Haromszog(new Pont3D(0, 0, 1), new Pont3D(0, 1, 1), new Pont3D(0, 1, 1)));
+            haromszogLista.Add(new Haromszog(new Pont3D(0, 0, 1), new Pont3D(0, 1, 0), new Pont3D(0, 0, 0)));
 
             //felső rész
-            haromszogLista.Add(new Haromszog(new Vektor3D(0, 1, 0), new Vektor3D(0, 1, 1), new Vektor3D(1, 1, 1)));
-            haromszogLista.Add(new Haromszog(new Vektor3D(0, 1, 0), new Vektor3D(1, 1, 1), new Vektor3D(1, 1, 0)));
+            haromszogLista.Add(new Haromszog(new Pont3D(0, 1, 0), new Pont3D(0, 1, 1), new Pont3D(1, 1, 1)));
+            haromszogLista.Add(new Haromszog(new Pont3D(0, 1, 0), new Pont3D(1, 1, 1), new Pont3D(1, 1, 0)));
 
             //alsó rész
-            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 1), new Vektor3D(0, 0, 1), new Vektor3D(0, 0, 0)));
-            haromszogLista.Add(new Haromszog(new Vektor3D(1, 0, 1), new Vektor3D(0, 0, 0), new Vektor3D(1, 0, 0)));
+            haromszogLista.Add(new Haromszog(new Pont3D(1, 0, 1), new Pont3D(0, 0, 1), new Pont3D(0, 0, 0)));
+            haromszogLista.Add(new Haromszog(new Pont3D(1, 0, 1), new Pont3D(0, 0, 0), new Pont3D(1, 0, 0)));
 
             return haromszogLista;
         }
@@ -122,17 +124,20 @@ namespace Tanulas3D
 
             foreach (Haromszog haromszog in kocka.HaromszogLista)
             {
-                /*haromszog.felulIrHaromszog(konvertalHaromszog2D(haromszog));
+                HaromszogVetulet kivetitettHaromszog = new HaromszogVetulet(haromszog.P1.konvertalPont2Dre(keparany, fLatoRad),
+                    haromszog.P2.konvertalPont2Dre(keparany, fLatoRad), haromszog.P2.konvertalPont2Dre(keparany, fLatoRad));
 
-                haromszog.V1.X *= Width / 5;
-                haromszog.V1.Y *= Height / 5;
-                haromszog.V2.X *= Width / 5;
-                haromszog.V2.Y *= Height / 5;
-                haromszog.V3.X *= Width / 5;
-                haromszog.V3.Y *= Height / 5;
-                
 
-                rajzolo.rajzolHaromszog(haromszog);*/
+
+                kivetitettHaromszog.P1.X *= Width / 5;
+                kivetitettHaromszog.P1.Y *= Height / 5;
+                kivetitettHaromszog.P2.X *= Width / 5;
+                kivetitettHaromszog.P2.Y *= Height / 5;
+                kivetitettHaromszog.P3.X *= Width / 5;
+                kivetitettHaromszog.P3.Y *= Height / 5;
+
+
+                rajzolo.rajzolHaromszog(kivetitettHaromszog.P1, kivetitettHaromszog.P2, kivetitettHaromszog.P3);
             }
 
         }
