@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
-using Tanulas3D.Model.Vektorok;
+using Tanulas3D.Model.Pontok;
 
 namespace Tanulas3D.Model
 {
@@ -19,9 +19,9 @@ namespace Tanulas3D.Model
 
         public Pont3D(float x, float y, float z)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
 
         public Pont2D konvertalPont2Dre(float keparany, float fLatoRad)
@@ -29,25 +29,64 @@ namespace Tanulas3D.Model
             Pont2D p2d = new Pont2D();
 
             //x
-            p2d.X = X * keparany * fLatoRad;
+            p2d.X = x * keparany * fLatoRad;
             
-            if (Z != 0)
+            if (z != 0)
             {
-                p2d.X /= Z;
+                p2d.X /= z;
             }
 
             //y
-            p2d.Y = Y * fLatoRad;
-            if (Z != 0)
+            p2d.Y = y * fLatoRad;
+            if (z != 0)
             {
-                p2d.Y /= Z;
+                p2d.Y /= z;
             }
 
             return p2d;
         }
 
-        public float X { get => x; set => x = value; }
-        public float Y { get => y; set => y = value; }
-        public float Z { get => z; set => z = value; }
+        public void setX(float x)
+        {
+            this.x = x;
+        }
+
+        public void setY(float y)
+        {
+            this.y = y;
+        }
+
+        public void setZ(float z)
+        {
+            this.z = z;
+        }
+
+        public float getX()
+        {
+            return x;
+        }
+
+        public float getY()
+        {
+            return y;
+        }
+
+        public float getZ()
+        {
+            return z;
+        }
+        public override string ToString()
+        {
+            return "pont : " + getX() + "x\t" + getY() + "y\t" + getZ() + "z";
+        }
+
+        public void hozzaadMindenErtekhez(float szam)
+        {
+            x += szam;
+            y += szam;
+            z += szam;
+
+        }
+
     }
 }

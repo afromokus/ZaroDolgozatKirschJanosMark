@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tanulas3D.Model.Vektorok
+namespace Tanulas3D.Model.Pontok
 {
     class Pont2D
     {

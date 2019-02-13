@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using Tanulas3D.Model;
-using Tanulas3D.Model.Vektorok;
+using Tanulas3D.Model.Pontok;
 
 namespace Tanulas3D.Service
 {
@@ -26,6 +26,20 @@ namespace Tanulas3D.Service
             ceruza = new Pen(Color.Black);
         }
 
+        public void rajzolHaromszog(Haromszog h3D)
+        {
+            grafika.DrawLine(ceruza, h3D.P1.getX(), h3D.P1.getY(), h3D.P2.getX(), h3D.P2.getY());
+            grafika.DrawLine(ceruza, h3D.P2.getX(), h3D.P2.getY(), h3D.P3.getX(), h3D.P3.getY());
+            grafika.DrawLine(ceruza, h3D.P3.getX(), h3D.P3.getY(), h3D.P1.getX(), h3D.P1.getY());
+        }
+
+        public void rajzolHaromszog(Haromszog2D h2D)
+        {
+            grafika.DrawLine(ceruza, h2D.P1.X, h2D.P1.Y, h2D.P2.X, h2D.P2.Y);
+            grafika.DrawLine(ceruza, h2D.P2.X, h2D.P2.Y, h2D.P3.X, h2D.P3.Y);
+            grafika.DrawLine(ceruza, h2D.P3.X, h2D.P3.Y, h2D.P1.X, h2D.P1.Y);
+        }
+
         public void rajzolHaromszog(Pont2D p1, Pont2D p2, Pont2D p3)
         {
 
@@ -39,10 +53,15 @@ namespace Tanulas3D.Service
         {
 
 
-            grafika.DrawLine(ceruza, p1.X, p1.Y, p2.X, p2.Y);
-            grafika.DrawLine(ceruza, p2.X, p2.Y, p3.X, p3.Y);
-            grafika.DrawLine(ceruza, p3.X, p3.Y, p1.X, p1.Y);
+            grafika.DrawLine(ceruza, p1.getX(), p1.getY(), p2.getX(), p2.getY());
+            grafika.DrawLine(ceruza, p2.getX(), p2.getY(), p3.getX(), p3.getY());
+            grafika.DrawLine(ceruza, p3.getX(), p3.getY(), p1.getX(), p1.getY());
 
+        }
+
+        public void tisztitas()
+        {
+            grafika.Clear(Color.White);
         }
 
     }
