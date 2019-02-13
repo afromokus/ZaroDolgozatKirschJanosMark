@@ -43,8 +43,8 @@ namespace Tanulas3D.Model
 
         public override string ToString()
         {
-            return "Pont 1: (" + p1.getX() + ", " + p1.getY() + ")\n" + "Pont 2: (" + p2.getX() + ", " + p2.getY() + ")\n" + 
-                "Pont 3: (" + p3.getX() + ", " + p3.getY() + ")\n";
+            return "Pont 1: " + p1 +"\nPont 2 :" + p2 + "\n" +
+                "Pont 3: " + p3 + "\n";
         }
 
         public Pont3D getPont1()

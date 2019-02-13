@@ -77,7 +77,7 @@ namespace Tanulas3D.Model
         }
         public override string ToString()
         {
-            return "pont : " + getX() + "x\t" + getY() + "y\t" + getZ() + "z";
+            return getX() + "x\t" + getY() + "y\t" + getZ() + "z";
         }
 
         public void hozzadXY(float szam)

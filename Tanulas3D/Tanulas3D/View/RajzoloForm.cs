@@ -170,10 +170,12 @@ namespace Tanulas3D
 
                 eltoltHaromszog.eltolZTengelyen(1f);
 
+                //kocka.HaromszogLista[i].eltolZTengelyen(-1f);
+
                 kivetiettHaromszog = new Haromszog();
-                    kivetiettHaromszog.setPont1(szorzasMatrixPonttal(kocka.HaromszogLista[i].getPont1(), matVetulet));
-                    kivetiettHaromszog.setPont2(szorzasMatrixPonttal(kocka.HaromszogLista[i].getPont2(), matVetulet));
-                    kivetiettHaromszog.setPont3(szorzasMatrixPonttal(kocka.HaromszogLista[i].getPont3(), matVetulet));
+                    kivetiettHaromszog.setPont1(szorzasMatrixPonttal(eltoltHaromszog.getPont1(), matVetulet));
+                    kivetiettHaromszog.setPont2(szorzasMatrixPonttal(eltoltHaromszog.getPont2(), matVetulet));
+                    kivetiettHaromszog.setPont3(szorzasMatrixPonttal(eltoltHaromszog.getPont3(), matVetulet));
 
                 kivetiettHaromszog.hozzaadXY(1f);
 
