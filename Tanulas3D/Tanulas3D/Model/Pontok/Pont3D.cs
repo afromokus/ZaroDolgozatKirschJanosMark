@@ -80,6 +80,12 @@ namespace Tanulas3D.Model
             return "pont : " + getX() + "x\t" + getY() + "y\t" + getZ() + "z";
         }
 
+        public void hozzadXY(float szam)
+        {
+            x += szam;
+            y += szam;
+        }
+
         public void hozzaadMindenErtekhez(float szam)
         {
             x += szam;

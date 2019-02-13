@@ -155,26 +155,29 @@ namespace Tanulas3D
             int i = 0;
             int kockakSzama = 0;
             HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
-            //HaromszogTarolo eredetiHaromszog;
             Haromszog kivetiettHaromszog;
             Haromszog elforgatottHaromszogZ;
             Haromszog elforgatottHaromszogZX;
 
 
-            while (kockakSzama < 15)
-            {
-
-                rajzolo.tisztitas();
+            
 
                 for (i = 0; i < kocka.HaromszogLista.Count; i++)
                 {
-                    
+                
+
+                kivetiettHaromszog = new Haromszog();
+                    kivetiettHaromszog.setPont1(szorzasMatrixPonttal(kocka.HaromszogLista[i].getPont1(), matVetulet));
+                    kivetiettHaromszog.setPont2(szorzasMatrixPonttal(kocka.HaromszogLista[i].getPont2(), matVetulet));
+                    kivetiettHaromszog.setPont3(szorzasMatrixPonttal(kocka.HaromszogLista[i].getPont3(), matVetulet));
+
+                kivetiettHaromszog.hozzaadXY(1f);
+
+                kivetiettHaromszog.novelesKepernyore((float)Width, (float)Height);
+
+                rajzolo.rajzolHaromszog(kivetiettHaromszog);
 
                 }
-                kockakSzama++;
-                System.Threading.Thread.Sleep(1000);
-            }
-            Environment.Exit(0);
 
         }
 

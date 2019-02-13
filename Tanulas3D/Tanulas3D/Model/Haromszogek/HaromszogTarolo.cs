@@ -55,9 +55,9 @@ namespace Tanulas3D.Model.Haromszogek
 
         public void adatokLekerese(Haromszog h)
         {
-            setPont1(h.P1);
-            setPont2(h.P2);
-            setPont3(h.P3);
+            setPont1(h.getPont1());
+            setPont2(h.getPont2());
+            setPont3(h.getPont3());
         }
 
         internal Haromszog visszaadHaromszogAdatok()
