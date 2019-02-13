@@ -115,5 +115,12 @@ namespace Tanulas3D.Model
             p3.setX(p3.getX() * width / 2);
             p3.setY(p3.getY() * height / 2);
         }
+
+        public void eltolZTengelyen(float szam)
+        {
+            p1.eltolZTengelyen(szam);
+            p2.eltolZTengelyen(szam);
+            p3.eltolZTengelyen(szam);
+        }
     }
 }

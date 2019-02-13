@@ -156,6 +156,7 @@ namespace Tanulas3D
             int kockakSzama = 0;
             HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
             Haromszog kivetiettHaromszog;
+            Haromszog eltoltHaromszog;
             Haromszog elforgatottHaromszogZ;
             Haromszog elforgatottHaromszogZX;
 
@@ -164,7 +165,10 @@ namespace Tanulas3D
 
                 for (i = 0; i < kocka.HaromszogLista.Count; i++)
                 {
-                
+
+                eltoltHaromszog = kocka.HaromszogLista[i];
+
+                eltoltHaromszog.eltolZTengelyen(1f);
 
                 kivetiettHaromszog = new Haromszog();
                     kivetiettHaromszog.setPont1(szorzasMatrixPonttal(kocka.HaromszogLista[i].getPont1(), matVetulet));
