@@ -9,6 +9,7 @@ using Tanulas3D.Model.Pontok;
 
 namespace Tanulas3D.Model
 {
+    [Serializable]
     class Pont3D
     {
         private float x, y, z;

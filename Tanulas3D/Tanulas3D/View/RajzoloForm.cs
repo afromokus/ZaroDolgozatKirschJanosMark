@@ -12,6 +12,8 @@ using Tanulas3D.Matrix;
 using Tanulas3D.Service;
 using Tanulas3D.Model.Pontok;
 using Tanulas3D.Model.Haromszogek;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace Tanulas3D
 {
@@ -166,11 +168,13 @@ namespace Tanulas3D
                 for (i = 0; i < kocka.HaromszogLista.Count; i++)
                 {
 
-                eltoltHaromszog = kocka.HaromszogLista[i];
+                eltoltHaromszog = new Haromszog();
+                eltoltHaromszog = Clone<Haromszog>(kocka.HaromszogLista[i]);
+                
+
+                MessageBox.Show("Eredeti háromszög:\n" + kocka.HaromszogLista[i]);
 
                 eltoltHaromszog.eltolZTengelyen(1f);
-
-                //kocka.HaromszogLista[i].eltolZTengelyen(-1f);
 
                 kivetiettHaromszog = new Haromszog();
                     kivetiettHaromszog.setPont1(szorzasMatrixPonttal(eltoltHaromszog.getPont1(), matVetulet));
@@ -180,6 +184,8 @@ namespace Tanulas3D
                 kivetiettHaromszog.hozzaadXY(1f);
 
                 kivetiettHaromszog.novelesKepernyore((float)Width, (float)Height);
+
+                MessageBox.Show("Eredeti háromszög ismét:\n" + kocka.HaromszogLista[i] + "\nEltolt háromszög:\n" + eltoltHaromszog);
 
                 rajzolo.rajzolHaromszog(kivetiettHaromszog);
 
@@ -203,6 +209,16 @@ namespace Tanulas3D
         {
         }
 
+        public static T Clone<T>(T masolando)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, masolando);
+                stream.Position = 0;
+                return (T)formatter.Deserialize(stream);
+            }
+        }
     }
 
 }

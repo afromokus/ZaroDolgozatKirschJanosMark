@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tanulas3D.Model
 {
+    [Serializable]
     class Haromszog
     {
         Pont3D p1;
@@ -122,5 +123,6 @@ namespace Tanulas3D.Model
             p2.eltolZTengelyen(szam);
             p3.eltolZTengelyen(szam);
         }
+
     }
 }
