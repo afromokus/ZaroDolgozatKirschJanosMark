@@ -124,5 +124,11 @@ namespace Tanulas3D.Model
             p3.eltolZTengelyen(szam);
         }
 
+        internal void hozzaadY(float szam)
+        {
+            p1.eltolYTengelyen(szam);
+            p2.eltolYTengelyen(szam);
+            p3.eltolYTengelyen(szam);
+        }
     }
 }

@@ -99,5 +99,10 @@ namespace Tanulas3D.Model
         {
             z += szam;
         }
+
+        internal void eltolYTengelyen(float szam)
+        {
+            y += szam;
+        }
     }
 }

@@ -8,13 +8,19 @@ namespace Tanulas3D.Matrix
 {
     class Mat4x4
     {
-        float[,] m = new float[4,  4];
+        int oszlopokSzama = 4;
+        int sorokSzama = 4;
+
+        float[,] m;
 
         public Mat4x4()
         {
-            for (int j = 0; j < 4; j++)
+
+            m = new float[oszlopokSzama, sorokSzama];
+
+            for (int j = 0; j < oszlopokSzama; j++)
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < sorokSzama; i++)
                 {
                     m[j, i] = 0;
                 }
@@ -22,5 +28,25 @@ namespace Tanulas3D.Matrix
         }
 
         public float[,] M { get => m; set => m = value; }
+
+        public override string ToString()
+        {
+            string sor = "";
+            string teljesSzoveg = "";
+
+            for (int j = 0; j < sorokSzama; j++)
+            {
+                for (int i = 0; i < oszlopokSzama; i++)
+                {
+                    sor += m[j, i] + "\t";
+                }
+
+                teljesSzoveg += sor + "\n";
+                sor = "";
+            }
+
+            return teljesSzoveg;
+        }
+
     }
 }
