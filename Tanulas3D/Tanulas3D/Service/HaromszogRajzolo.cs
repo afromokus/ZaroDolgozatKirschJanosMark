@@ -28,9 +28,16 @@ namespace Tanulas3D.Service
 
         public void rajzolHaromszog(Haromszog h3D)
         {
-            grafika.DrawLine(ceruza, h3D.getPont1().getX(), h3D.getPont1().getY(), h3D.getPont2().getX(), h3D.getPont2().getY());
-            grafika.DrawLine(ceruza, h3D.getPont2().getX(), h3D.getPont2().getY(), h3D.getPont3().getX(), h3D.getPont3().getY());
-            grafika.DrawLine(ceruza, h3D.getPont3().getX(), h3D.getPont3().getY(), h3D.getPont1().getX(), h3D.getPont1().getY());
+            try
+            {
+                grafika.DrawLine(ceruza, h3D.getPont1().getX(), h3D.getPont1().getY(), h3D.getPont2().getX(), h3D.getPont2().getY());
+                grafika.DrawLine(ceruza, h3D.getPont2().getX(), h3D.getPont2().getY(), h3D.getPont3().getX(), h3D.getPont3().getY());
+                grafika.DrawLine(ceruza, h3D.getPont3().getX(), h3D.getPont3().getY(), h3D.getPont1().getX(), h3D.getPont1().getY());
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public void rajzolHaromszog(Haromszog2D h2D)
