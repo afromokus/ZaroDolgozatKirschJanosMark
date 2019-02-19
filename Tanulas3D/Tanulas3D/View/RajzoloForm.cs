@@ -112,9 +112,7 @@ namespace Tanulas3D
             matForgatasX.M[2, 2] = Math.Cos(forgatas).konvertalFloat();
             matForgatasX.M[3, 3] = 1f;
 
-            MessageBox.Show(matForgatasX.ToString());
-
-            //forgatás z tengelyen óramutató járásával megyezően
+            //forgatás z tengelyen óramutató járásával ellentétesen
             matForgatasZOraEll.M[0, 0] = Math.Cos(forgatas).konvertalFloat();
             matForgatasZOraEll.M[0, 1] = Math.Sin(forgatas).konvertalFloat();
             matForgatasZOraEll.M[1, 0] = -Math.Sin(forgatas).konvertalFloat();
