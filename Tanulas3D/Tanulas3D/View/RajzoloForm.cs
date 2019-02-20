@@ -61,7 +61,6 @@ namespace Tanulas3D
             matForgatasZOraEll = new Mat4x4();
             matForgatasX = new Mat4x4();
             elokeszuletek();
-            WindowState = FormWindowState.Maximized;
 
         }
 
@@ -96,7 +95,7 @@ namespace Tanulas3D
             fLatoRad = 1.0f / Math.Tan(fLatoter / 2f).konvertalFloat();
             frissitKeparany();
             q = fTavol / (fKozel - fTavol);
-            forgatas = 10f;
+            forgatas = 1f;
             forgatas *= Math.PI.konvertalFloat() / 180f;
 
             //matVetulet
@@ -167,26 +166,40 @@ namespace Tanulas3D
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            int i = 0;
 
-            Haromszog haromszog = kocka.HaromszogLista[0];
-            Haromszog kivetitettHaromszog = new Haromszog();
+
+            int i = 0;
+            bool elsoAlkalom = true;
+
             HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
 
-            haromszog.eltolZTengelyen(3f);
+            Pont3D vonalPont1 = new Pont3D();
+            Pont3D vonalPont2 = new Pont3D();
 
 
-            kivetitettHaromszog.setPont1(szorzasMatrixPonttal(Clone<Pont3D>(haromszog.getPont1()), matVetulet));
-            kivetitettHaromszog.setPont2(szorzasMatrixPonttal(Clone<Pont3D>(haromszog.getPont2()), matVetulet));
-            kivetitettHaromszog.setPont3(szorzasMatrixPonttal(Clone<Pont3D>(haromszog.getPont3()), matVetulet));
+            vonalPont1.setX(5000); vonalPont1.setY(200); vonalPont1.setZ(3);
+            vonalPont2.setX(500); vonalPont2.setY(2000); vonalPont2.setZ(2);
 
+            while (true)
+            {
 
-            kivetitettHaromszog.novelesKepernyore((float)Width, (float) Height);
+                vonalPont1 = szorzasMatrixPonttal(vonalPont1, matVetulet);
+                vonalPont2 = szorzasMatrixPonttal(vonalPont2, matVetulet);
 
+                rajzolo.rajzolEgyenes(vonalPont1, vonalPont2);
 
-            kivetitettHaromszog.eltolas(300, 250);
+                vonalPont1 = szorzasMatrixPonttal(vonalPont1, matForgatasX);
+                vonalPont2 = szorzasMatrixPonttal(vonalPont2, matForgatasX);
 
-            rajzolo.rajzolHaromszog(kivetitettHaromszog);
+                if (elsoAlkalom)
+                {
+                    WindowState = FormWindowState.Maximized;
+                    elsoAlkalom = false;
+                }
+
+                System.Threading.Thread.Sleep(1000);
+
+            }
 
 
             /*HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
