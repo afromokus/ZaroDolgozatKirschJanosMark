@@ -168,11 +168,31 @@ namespace Tanulas3D
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             int i = 0;
+
+            Haromszog haromszog = kocka.HaromszogLista[0];
+            Haromszog kivetitettHaromszog = new Haromszog();
             HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
+
+            haromszog.eltolZTengelyen(3f);
+
+
+            kivetitettHaromszog.setPont1(szorzasMatrixPonttal(Clone<Pont3D>(haromszog.getPont1()), matVetulet));
+            kivetitettHaromszog.setPont2(szorzasMatrixPonttal(Clone<Pont3D>(haromszog.getPont2()), matVetulet));
+            kivetitettHaromszog.setPont3(szorzasMatrixPonttal(Clone<Pont3D>(haromszog.getPont3()), matVetulet));
+
+
+            kivetitettHaromszog.novelesKepernyore((float)Width, (float) Height);
+
+
+            kivetitettHaromszog.eltolas(300, 250);
+
+            rajzolo.rajzolHaromszog(kivetitettHaromszog);
+
+
+            /*HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
             Haromszog kivetitettHaromszog;
             Haromszog eltoltHaromszog;
             Haromszog elforgatottHaromszog;
-            Haromszog elforgatottHaromszogY;
             bool elsoKockaE = true;
 
             eltoltHaromszog = new Haromszog();
@@ -202,9 +222,9 @@ namespace Tanulas3D
 
                     elforgatottHaromszog = Clone<Haromszog>(eltoltHaromszog);
 
-                    elforgatottHaromszog.setPont1(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont1()), matForgatasX));
-                    elforgatottHaromszog.setPont2(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont2()), matForgatasX));
-                    elforgatottHaromszog.setPont3(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont3()), matForgatasX));
+                    elforgatottHaromszog.setPont1(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont1()), matForgatasY));
+                    elforgatottHaromszog.setPont2(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont2()), matForgatasY));
+                    elforgatottHaromszog.setPont3(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont3()), matForgatasY));
 
 
 
@@ -219,10 +239,10 @@ namespace Tanulas3D
 
                 }
                 elsoKockaE = false;
-                System.Threading.Thread.Sleep(180);
+                System.Threading.Thread.Sleep(120);
                 rajzolo.tisztitas();
 
-            }
+            }*/
         }
 
         float normalOsztasHaNullaEgyel(float osztando, float oszto)

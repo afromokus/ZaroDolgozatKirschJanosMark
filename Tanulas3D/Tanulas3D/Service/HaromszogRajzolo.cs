@@ -36,7 +36,7 @@ namespace Tanulas3D.Service
             }
             catch (Exception e)
             {
-
+                MessageBox.Show(e.Message);
             }
         }
 
