@@ -73,12 +73,12 @@ namespace Tanulas3D
             ki.setZ(be.getX() * m.M[0, 2] + be.getY() * m.M[1, 2] + be.getZ() * m.M[2, 2] + m.M[3, 2]);
             float w = be.getX() * m.M[0, 3] + be.getY() * m.M[1, 3] + be.getZ() * m.M[2, 3] + m.M[3, 3];
 
-            if (w != 0)
-            {
-                ki.setX(ki.getX() / w);
-                ki.setY(ki.getY() / w);
-                ki.setZ(ki.getZ() / w);
-            }
+            //if (w != 0)
+            //{
+            //    ki.setX(ki.getX() / w);
+            //    ki.setY(ki.getY() / w);
+            //    ki.setZ(ki.getZ() / w);
+            //}
 
             return ki;
         }
@@ -95,7 +95,7 @@ namespace Tanulas3D
             fLatoRad = 1.0f / Math.Tan(fLatoter / 2f).konvertalFloat();
             frissitKeparany();
             q = fTavol / (fKozel - fTavol);
-            forgatas = 1f;
+            forgatas = 10f;
             forgatas *= Math.PI.konvertalFloat() / 180f;
 
             //matVetulet
@@ -107,12 +107,20 @@ namespace Tanulas3D
             matVetulet.M[3, 3] = 0f;
 
             //forgatás z tengelyen óramutató járásával ellentétesen
-            matForgatasZOraEll.M[0, 0] = Math.Cos(forgatas).konvertalFloat();
-            matForgatasZOraEll.M[0, 1] = -Math.Sin(forgatas).konvertalFloat();
-            matForgatasZOraEll.M[1, 0] = Math.Sin(forgatas).konvertalFloat();
-            matForgatasZOraEll.M[1, 1] = Math.Cos(forgatas).konvertalFloat();
+            matForgatasZOraEll.M[0, 0] = Math.Cos(forgatas / 2).konvertalFloat();
+            matForgatasZOraEll.M[0, 1] = -Math.Sin(forgatas / 2).konvertalFloat();
+            matForgatasZOraEll.M[1, 0] = Math.Sin(forgatas / 2).konvertalFloat();
+            matForgatasZOraEll.M[1, 1] = Math.Cos(forgatas / 2).konvertalFloat();
             matForgatasZOraEll.M[2, 2] = 1f;
             matForgatasZOraEll.M[3, 3] = 1f;
+
+            //forgatás x tengelyen
+            matForgatasX.M[0, 0] = 1f;
+            matForgatasX.M[1, 1] = Math.Cos(forgatas).konvertalFloat();
+            matForgatasX.M[1, 2] = Math.Sin(forgatas).konvertalFloat();
+            matForgatasX.M[2, 1] = -Math.Sin(forgatas).konvertalFloat();
+            matForgatasX.M[2, 2] = Math.Cos(forgatas).konvertalFloat();
+            matForgatasX.M[3, 3] = 1f;
 
 
         }
@@ -151,95 +159,60 @@ namespace Tanulas3D
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
 
-
             int i = 0;
-            bool elsoAlkalom = true;
 
             HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
-
-            Pont3D vonalPont1 = new Pont3D();
-            Pont3D vonalPont2 = new Pont3D();
-
-
-            vonalPont1.setX(5000); vonalPont1.setY(200); vonalPont1.setZ(3);
-            vonalPont2.setX(500); vonalPont2.setY(2000); vonalPont2.setZ(2);
-
-            while (true)
-            {
-
-                vonalPont1 = szorzasMatrixPonttal(vonalPont1, matVetulet);
-                vonalPont2 = szorzasMatrixPonttal(vonalPont2, matVetulet);
-
-                rajzolo.rajzolEgyenes(vonalPont1, vonalPont2);
-
-                vonalPont1 = szorzasMatrixPonttal(vonalPont1, matForgatasX);
-                vonalPont2 = szorzasMatrixPonttal(vonalPont2, matForgatasX);
-
-                if (elsoAlkalom)
-                {
-                    WindowState = FormWindowState.Maximized;
-                    elsoAlkalom = false;
-                }
-
-                System.Threading.Thread.Sleep(1000);
-
-            }
-
-
-            /*HaromszogRajzolo rajzolo = new HaromszogRajzolo(vaszon);
             Haromszog kivetitettHaromszog;
-            Haromszog eltoltHaromszog;
+            Haromszog elforgatottEtoltHaromszog;
             Haromszog elforgatottHaromszog;
             bool elsoKockaE = true;
 
-            eltoltHaromszog = new Haromszog();
+            elforgatottEtoltHaromszog = new Haromszog();
 
             while (true)
             {
                 for (i = 0; i < kocka.HaromszogLista.Count; i++)
                 {
 
-                    eltoltHaromszog = new Haromszog();
-                    eltoltHaromszog = Clone<Haromszog>(kocka.HaromszogLista[i]);
+
+                    elforgatottHaromszog = Clone<Haromszog>(kocka.HaromszogLista[i]);
+
+                    elforgatottHaromszog.setPont1(szorzasMatrixPonttal(Clone<Pont3D>(elforgatottHaromszog.getPont1()), matForgatasX));
+                    elforgatottHaromszog.setPont2(szorzasMatrixPonttal(Clone<Pont3D>(elforgatottHaromszog.getPont2()), matForgatasX));
+                    elforgatottHaromszog.setPont3(szorzasMatrixPonttal(Clone<Pont3D>(elforgatottHaromszog.getPont3()), matForgatasX));
+
+                    elforgatottHaromszog.setPont1(szorzasMatrixPonttal(elforgatottHaromszog.getPont1(), matForgatasZOraEll));
+                    elforgatottHaromszog.setPont2(szorzasMatrixPonttal(elforgatottHaromszog.getPont2(), matForgatasZOraEll));
+                    elforgatottHaromszog.setPont3(szorzasMatrixPonttal(elforgatottHaromszog.getPont3(), matForgatasZOraEll));
+
+                    elforgatottEtoltHaromszog = new Haromszog();
+                    elforgatottEtoltHaromszog = Clone<Haromszog>(elforgatottHaromszog);
 
                     if (elsoKockaE)
                     {
-                        eltoltHaromszog.eltolZTengelyen(3f);
+                        elforgatottEtoltHaromszog.eltolZTengelyen(0f);
                     }
 
                     //átalakítás 2D-re
                     kivetitettHaromszog = new Haromszog();
-                    kivetitettHaromszog.setPont1(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont1()), matVetulet));
-                    kivetitettHaromszog.setPont2(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont2()), matVetulet));
-                    kivetitettHaromszog.setPont3(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont3()), matVetulet));
-
-                    //eltolás képernyőn
+                    kivetitettHaromszog.setPont1(szorzasMatrixPonttal(Clone<Pont3D>(elforgatottEtoltHaromszog.getPont1()), matVetulet));
+                    kivetitettHaromszog.setPont2(szorzasMatrixPonttal(Clone<Pont3D>(elforgatottEtoltHaromszog.getPont2()), matVetulet));
+                    kivetitettHaromszog.setPont3(szorzasMatrixPonttal(Clone<Pont3D>(elforgatottEtoltHaromszog.getPont3()), matVetulet));
 
                     kivetitettHaromszog.novelesKepernyore((float)Width, (float)Height);
 
-                    elforgatottHaromszog = Clone<Haromszog>(eltoltHaromszog);
-
-                    elforgatottHaromszog.setPont1(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont1()), matForgatasY));
-                    elforgatottHaromszog.setPont2(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont2()), matForgatasY));
-                    elforgatottHaromszog.setPont3(szorzasMatrixPonttal(Clone<Pont3D>(eltoltHaromszog.getPont3()), matForgatasY));
-
-
-
-                    kocka.HaromszogLista[i] = elforgatottHaromszog;
-
-                    //MessageBox.Show(matForgatasZ.ToString());
+                    kocka.HaromszogLista[i] = elforgatottEtoltHaromszog;
 
                     kivetitettHaromszog.eltolas(500, 200);
-
                     
                     rajzolo.rajzolHaromszog(kivetitettHaromszog);
 
                 }
                 elsoKockaE = false;
-                System.Threading.Thread.Sleep(120);
+                System.Threading.Thread.Sleep(100);
                 rajzolo.tisztitas();
 
-            }*/
+            }
         }
 
         float normalOsztasHaNullaEgyel(float osztando, float oszto)
