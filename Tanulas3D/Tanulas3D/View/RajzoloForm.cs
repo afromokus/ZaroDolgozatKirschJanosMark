@@ -107,22 +107,6 @@ namespace Tanulas3D
             matVetulet.M[2, 3] = 1f;
             matVetulet.M[3, 3] = 0f;
 
-            //forgatás x tengelyen            
-            matForgatasX.M[0, 0] = 1f;
-            matForgatasX.M[1, 1] = Math.Cos(forgatas).konvertalFloat();
-            matForgatasX.M[1, 2] = Math.Sin(forgatas).konvertalFloat();
-            matForgatasX.M[2, 1] = -Math.Sin(forgatas).konvertalFloat();
-            matForgatasX.M[2, 2] = Math.Cos(forgatas).konvertalFloat();
-            matForgatasX.M[3, 3] = 1f;
-
-            //forgatás Y tengelyen
-            matForgatasY.M[0, 0] = Math.Cos(forgatas).konvertalFloat();
-            matForgatasY.M[0, 2] = Math.Sin(forgatas).konvertalFloat();
-            matForgatasY.M[1, 1] = 1f;
-            matForgatasY.M[2, 0] = -Math.Sin(forgatas).konvertalFloat();
-            matForgatasY.M[2, 2] = Math.Cos(forgatas).konvertalFloat();
-            matForgatasY.M[3, 3] = 1f;
-
             //forgatás z tengelyen óramutató járásával ellentétesen
             matForgatasZOraEll.M[0, 0] = Math.Cos(forgatas).konvertalFloat();
             matForgatasZOraEll.M[0, 1] = -Math.Sin(forgatas).konvertalFloat();
