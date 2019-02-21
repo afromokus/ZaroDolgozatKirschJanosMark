@@ -71,5 +71,15 @@ namespace Tanulas3D.Service
             grafika.Clear(Color.White);
         }
 
+        internal void rajzolEgyenes(Pont2D p1, Pont2D p2)
+        {
+            grafika.Clear(Color.White);
+            grafika.DrawLine(ceruza, p1.X, p1.Y, p2.X, p2.Y);
+        }
+
+        internal void rajzolEgyenes(Pont3D p1, Pont3D p2)
+        {
+            grafika.DrawLine(ceruza, p1.getX(), p1.getY(), p2.getX(), p2.getY());
+        }
     }
 }
