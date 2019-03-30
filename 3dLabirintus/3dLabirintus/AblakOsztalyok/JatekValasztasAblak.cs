@@ -46,8 +46,7 @@ namespace _3dLabirintus
         #region gombok metódusai
         private void buttonUjJatek_Click(object sender, EventArgs e)
         {
-            jAblak = new JatekAblak();
-            jAblak.ShowDialog();
+            System.Diagnostics.Process.Start("Labirintus.exe");
         }
 
         private void visszaLepes(object sender, KeyEventArgs e)

@@ -22,6 +22,8 @@ SET time_zone = "+00:00";
 -- Adatbázis: `lab3d`
 --
 
+CREATE DATABASE lab3d CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+
 -- --------------------------------------------------------
 
 --
