@@ -74,7 +74,7 @@ CREATE TABLE `jatek` (
   `jAzon` int(11) NOT NULL,
   `palyaAz` int(11) DEFAULT NULL,
   `elhX` int(11) DEFAULT NULL,
-  `elhY` int(11) DEFAULT NULL
+  `elhZ` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------

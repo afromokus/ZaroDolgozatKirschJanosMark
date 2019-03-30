@@ -14,7 +14,6 @@ namespace _3dLabirintus
     {
         #region deklarálás
         KeyEventHandler visszaAFomenubeEsemenyKezelo;
-        JatekAblak jAblak;
         #endregion
 
         #region betöltés

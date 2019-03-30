@@ -154,14 +154,5 @@ namespace _3dLabirintus
 
         #endregion
 
-        #region fel nem használt kód
-        public static double tavolsagSzamitasa(Pont elsoPont, Pont masodikPont)
-        {
-            return Math.Sqrt(Math.Pow((elsoPont.getX() - masodikPont.getX()), 2)
-                + Math.Pow((elsoPont.getY() - masodikPont.getY()), 2));
-        }
-
-        #endregion
-
     }
 }
