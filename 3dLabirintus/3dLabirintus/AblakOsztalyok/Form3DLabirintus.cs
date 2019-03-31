@@ -78,6 +78,7 @@ namespace _3dLabirintus
         private void gombOnline_Click(object sender, EventArgs e)
         {
             AdatbazisKezelo ak = new AdatbazisKezelo();
+            ak.bejelentkezes("hami", "nyami");
         }
 
         private void gombokFelirata()

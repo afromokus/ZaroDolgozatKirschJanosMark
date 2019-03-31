@@ -25,6 +25,14 @@ namespace _3dLabirintus.AblakOsztalyok
             parancs = new MySqlCommand("", csatlakozas);
             parancs.CommandText = "SELECT * FROM accountok";
             tabla = parancs.ExecuteReader();
+
+            System.Windows.Forms.MessageBox.Show(csatlakozas.State.ToString());
+
+            while (tabla.Read())
+            {
+                System.Windows.Forms.MessageBox.Show(tabla.GetString(0));
+            }
+
         }
 
         public void bezaras()
