@@ -45,7 +45,21 @@ namespace _3dLabirintus
         #region gombok metódusai
         private void buttonUjJatek_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("Labirintus.exe");
+            System.Diagnostics.Process.Start("..\\");
+        }
+
+        public static bool jatekFuttatas(string fileNev, string kiterjesztes="exe")
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(fileNev + "." + kiterjesztes);
+                return true;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Játék futtatása sikertelen:\t" + e.Message);
+                return false;
+            }
         }
 
         private void visszaLepes(object sender, KeyEventArgs e)

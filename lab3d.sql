@@ -44,7 +44,7 @@ CREATE TABLE `accountok` (
 
 INSERT INTO `accountok` (`felhNev`, `jelszo`, `email_cim`, `jog`, `szint`, `regio_az`) VALUES
 ('gycsaba', 'gycsaba', 'gyuris.csaba@vasvari.hu', 'felhasználó', 1, 3),
-('ujFelhNev', 'ujJelszo', 'ujEmail', 'jog', 1, 3),
+('baro', 'baro123', 'balint.robert@vasvari.hu', 'felhasználó', 1, 3),
 ('user', 'user', 'username@gmail.com', 'felhasználó', 1, 3);
 
 -- --------------------------------------------------------
