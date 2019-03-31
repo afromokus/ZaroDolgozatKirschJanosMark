@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using _3dLabirintus.VezerloEsSegedOsztalyok;
+using _3dLabirintus.AblakOsztalyok;
 
 namespace _3dLabirintus
 {
@@ -66,11 +67,17 @@ namespace _3dLabirintus
         {
             gombJatekStart.Click += new EventHandler(gombJatekStart_Click);
             gombKilepes.Click += new EventHandler(gombKilepes_Click);
+            gombOnlineMod.Click += new EventHandler(gombOnline_Click);
 
             Controls.Add(gombJatekStart);
             Controls.Add(gombOnlineMod);
             Controls.Add(gombBeallitasok);
             Controls.Add(gombKilepes);
+        }
+
+        private void gombOnline_Click(object sender, EventArgs e)
+        {
+            AdatbazisKezelo ak = new AdatbazisKezelo();
         }
 
         private void gombokFelirata()
